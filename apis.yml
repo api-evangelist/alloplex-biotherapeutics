@@ -1,18 +1,101 @@
 aid: alloplex-biotherapeutics
 name: Alloplex Biotherapeutics
-description: 'Alloplex Biotherapeutics is a company surfaced via the API Evangelist harvest backlog (source:
-  secondary-market) and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Alloplex Biotherapeutics, Inc. is a privately held clinical-stage cellular immunotherapy company
+  founded in 2016 and headquartered in Woburn, Massachusetts, with a wholly owned subsidiary,
+  Alloplex Australia Pty Ltd, in Adelaide, South Australia. It develops non-engineered, autologous
+  multi-cellular therapies intended to retrain a patient's own immune system against solid tumors
+  and autoimmune disease. Its ENLIST platform uses an irradiated, engineered melanoma cell line
+  expressing multiple immunomodulatory factors to activate, differentiate and expand a patient's
+  peripheral blood mononuclear cells; the resulting product, SUPLEXA, is manufactured by a defined,
+  GMP-compatible process that uses no genetic engineering and no feeder cells and yields a full
+  course of treatment from a small blood draw in roughly one month. The first-in-human Phase 1
+  SUPLEXA-101 trial, conducted in Australia in 35 patients with metastatic solid tumors who had
+  exhausted standard options, met its endpoints, and the FDA granted SUPLEXA Fast Track designation
+  for MSI-H colorectal cancer. Alloplex Biotherapeutics runs no developer program and publishes no
+  product API, developer portal, SDK or API documentation; the only machine-readable surface
+  reachable without credentials is the WordPress REST content API behind alloplexbio.com,
+  catalogued here.
+image: https://alloplexbio.com/wp-content/uploads/2021/05/mark@2x.png
 url: https://raw.githubusercontent.com/api-evangelist/alloplex-biotherapeutics/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enriched
 specificationVersion: '0.20'
 created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
-apis: []
+- biotechnology
+- cell-therapy
+- immunotherapy
+- oncology
+- cancer
+- clinical-trials
+- life-sciences
+- drug-development
+- autoimmunity
+- content-api
+apis:
+- aid: alloplex-biotherapeutics:alloplex-biotherapeutics-content-api
+  name: Alloplex Biotherapeutics Content API
+  description: >-
+    The anonymously readable WordPress REST API behind alloplexbio.com. It exposes the company's 61
+    published press releases, scientific-news items and opinion pieces, the 19 corporate pages
+    (About, Investors, Scientists, Information for Patients, Media and Press, Media Kit, FAQ,
+    Releases and Updates, Terms of use, Privacy Policy, Contact and the shareholder-portal pages),
+    the 225-item media library, the 11 editorial categories, the registered post types, taxonomies
+    and statuses, cross-content search, and the oEmbed 1.0 provider endpoint. Unlike many corporate
+    WordPress sites, `content.rendered` and `excerpt.rendered` are fully populated on posts and on
+    most pages, so this surface yields real prose and not just identity and metadata. Three things a
+    consumer must know. First, the `tags` taxonomy is registered but empty (0 terms) and comments
+    are closed site-wide (0 items), so editorial grouping is carried entirely by `categories`.
+    Second, the site registers four custom post types that appear in its sitemaps — `publication`,
+    `team_member`, `conference` and `resource` — but none of them is REST-exposed, so publications,
+    leadership bios, conference appearances and downloadable resources are reachable only as HTML,
+    not through this API. Third, the site installs the WordPress MCP adapter (`mcp` namespace, a
+    `POST /wp-json/mcp/mcp-adapter-default-server` endpoint) and the WordPress Abilities API
+    (`wp-abilities/v1`), but every route under both returns 401 `rest_forbidden` anonymously, so no
+    agent surface is claimed here. This is not a developer product Alloplex Biotherapeutics markets;
+    it is the site's own content surface, registered at /wp-json/ and verified to return data
+    without credentials. The OpenAPI in this repo is derived from the published route index.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://alloplexbio.com/wp-json
+  tags:
+  - content
+  - wordpress
+  - corporate
+  - media
+  properties:
+  - type: OpenAPI
+    url: openapi/alloplex-biotherapeutics-content-openapi.yml
+  - type: Overlay
+    url: overlays/alloplex-biotherapeutics-content-overlay.yaml
+  - type: Authentication
+    url: authentication/alloplex-biotherapeutics-authentication.yml
+  - type: ErrorCatalog
+    url: errors/alloplex-biotherapeutics-problem-types.yml
+  - type: Conventions
+    url: conventions/alloplex-biotherapeutics-conventions.yml
+  - type: DataModel
+    url: data-model/alloplex-biotherapeutics-data-model.yml
+  - type: JSONLD
+    url: json-ld/alloplex-biotherapeutics-json-ld.yml
+  x-contract-provenance: >-
+    Derived by the API Evangelist enrichment pipeline from the WordPress REST route index the site
+    publishes at https://alloplexbio.com/wp-json/ — 219 routes across the namespaces oembed/1.0,
+    wpe/cache-plugin/v1, wpe_sign_on_plugin/v1, post-duplicator/v1, MtphrPostDuplicatorSettings/v1,
+    rankmath/v1, wordfence/v1, mcp, wp/v2, wp-site-health/v1, wp-block-editor/v1 and
+    wp-abilities/v1 — and verified against live anonymous responses on 2026-08-06. Only the
+    operations that returned data without credentials are modelled. /wp/v2/users returns 401
+    rest_forbidden, /wp/v2/settings returns 401 rest_forbidden, and menus, menu-items, templates,
+    block-types, font-families, plugins, themes, widgets, sidebars and the pattern directory all
+    return 401. The `mcp` and `wp-abilities/v1` namespaces are registered but return 401
+    rest_forbidden on every route without credentials. Alloplex Biotherapeutics publishes no
+    developer documentation, no API reference, no getting-started guide and no support channel for
+    this surface, so no Documentation/APIReference/GettingStarted pointers are emitted; the
+    humanURL above is the upstream WordPress REST handbook that defines the wp/v2 contract.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +103,93 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://alloplexbio.com/
+- type: About
+  url: https://alloplexbio.com/about/
+- type: Science
+  url: https://alloplexbio.com/scientists/
+- type: Investors
+  url: https://alloplexbio.com/investors/
+- type: News
+  url: https://alloplexbio.com/newsroom/
+- type: Blog
+  url: https://alloplexbio.com/releases-and-updates/
+- type: BlogRSS
+  url: https://alloplexbio.com/feed/
+- type: InTheNews
+  url: https://alloplexbio.com/in-the-news/
+- type: MediaKit
+  url: https://alloplexbio.com/presskitoct24/
+- type: Publications
+  url: https://alloplexbio.com/publications/
+- type: InformationForPatients
+  url: https://alloplexbio.com/information-for-patients/
+- type: FAQ
+  url: https://alloplexbio.com/faq/
+- type: Contact
+  url: https://alloplexbio.com/contact/
+- type: Support
+  url: https://alloplexbio.com/contact/
+- type: Login
+  url: https://alloplexbio.com/portal-login/
+- type: TermsOfService
+  url: https://alloplexbio.com/terms/
+- type: PrivacyPolicy
+  url: https://alloplexbio.com/privacy-policy/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/alloplex-biotherapeutics
+- type: Sitemap
+  url: https://alloplexbio.com/sitemap_index.xml
+- type: SecondaryMarket
   url: https://forgeglobal.com/alloplex-biotherapeutics_stock/
+- type: Authentication
+  url: authentication/alloplex-biotherapeutics-authentication.yml
+- type: Conventions
+  url: conventions/alloplex-biotherapeutics-conventions.yml
+- type: Conformance
+  url: conformance/alloplex-biotherapeutics-conformance.yml
+- type: ErrorCatalog
+  url: errors/alloplex-biotherapeutics-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/alloplex-biotherapeutics-lifecycle.yml
+- type: DataModel
+  url: data-model/alloplex-biotherapeutics-data-model.yml
+- type: JSONLD
+  url: json-ld/alloplex-biotherapeutics-json-ld.yml
+- type: WellKnown
+  url: well-known/alloplex-biotherapeutics-well-known.yml
+- type: DomainSecurity
+  url: security/alloplex-biotherapeutics-domain-security.yml
+- type: LLMsTxt
+  url: llms/alloplex-biotherapeutics-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-08-06'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v1
+x-coverage:
+  state: covered
+  reason: no-developer-program
+  detail: >-
+    Alloplex Biotherapeutics is a clinical-stage biotech that runs no developer program — /developers/,
+    /api/ and every /.well-known/ path return 404 against a verified negative control — but its
+    corporate WordPress site exposes a genuinely anonymous, machine-readable REST content API at
+    /wp-json/ (61 posts, 19 pages, 225 media items, populated content bodies), which is what this
+    profile catalogues; the site also registers a WordPress MCP adapter and the Abilities API, but
+    both return 401 rest_forbidden anonymously so no agent surface is claimed.
+  evidence:
+  - url: https://alloplexbio.com/wp-json/
+    status: 200
+  - url: https://alloplexbio.com/wp-json/wp/v2/posts?per_page=1
+    status: 200
+  - url: https://alloplexbio.com/wp-json/mcp/mcp-adapter-default-server
+    status: 401
+  - url: https://alloplexbio.com/.well-known/agent-card.json
+    status: 404
+  - url: https://alloplexbio.com/openapi.json
+    status: 404
+  - url: https://alloplexbio.com/.well-known/THIS-SHOULD-404-control
+    status: 404
+  checked: '2026-08-06'

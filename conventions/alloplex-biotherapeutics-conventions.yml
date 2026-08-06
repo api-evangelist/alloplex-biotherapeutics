@@ -1,0 +1,157 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  openapi/alloplex-biotherapeutics-content-openapi.yml plus live anonymous request/response headers
+  observed against https://alloplexbio.com/wp-json/ on 2026-08-06.
+api: alloplex-biotherapeutics-content-api
+summary: >-
+  Cross-cutting runtime semantics of the Alloplex Biotherapeutics content API. These are WordPress
+  core conventions, not conventions Alloplex Biotherapeutics authored or documents — the company
+  publishes no developer documentation for this surface. They are recorded here because they are
+  what an integrator actually has to code against.
+authentication:
+  style: none
+  detail: >-
+    No scheme is declared; the REST index returns `"authentication": []`. Read operations take no
+    credential; everything else is refused. See
+    authentication/alloplex-biotherapeutics-authentication.yml.
+pagination:
+  style: page-number
+  params:
+  - name: page
+    default: 1
+    minimum: 1
+  - name: per_page
+    default: 10
+    minimum: 1
+    maximum: 100
+    note: Values outside 1-100 return 400 rest_invalid_param with data.details.per_page.code = rest_out_of_bounds.
+  - name: offset
+    note: Supported as an alternative to page on post-type collections.
+  response_fields: []
+  response_headers:
+  - name: X-WP-Total
+    description: Total matching records across all pages. Observed 61 on /wp/v2/posts, 19 on /wp/v2/pages, 225 on /wp/v2/media, 11 on /wp/v2/categories.
+  - name: X-WP-TotalPages
+    description: Total pages at the current per_page.
+  - name: Link
+    description: RFC 8288 Link header carrying rel="next" and rel="prev".
+  note: >-
+    The collection body is a bare JSON array with no envelope, so the totals live only in headers.
+    A client that reads only the body cannot tell whether more pages exist. Both X-WP-Total and
+    X-WP-TotalPages are named in access-control-expose-headers, so they are readable from a browser.
+sorting:
+  params: [order, orderby]
+  order_default: desc
+  orderby_default: date
+  note: >-
+    orderby accepts relevance only when a search term is supplied. Term collections order by name
+    ascending by default, not by date.
+filtering:
+  params: [search, slug, include, exclude, after, before, modified_after, modified_before, status, categories, categories_exclude, author, media_type, mime_type]
+  note: >-
+    `status` is accepted but anonymous callers may only request `publish`. Date filters take ISO
+    8601 values. `categories` is the useful one on this deployment — it is the only working
+    editorial filter, because the tags taxonomy is empty.
+sparse_fieldsets:
+  supported: true
+  param: _fields
+  example: /wp/v2/posts?per_page=100&_fields=id,slug,title,link,date,categories
+  note: >-
+    _fields is the single most useful parameter on this API. The unfiltered post object carries the
+    full rendered HTML body, so field-filtering cuts response size by an order of magnitude when
+    building an index rather than reading content.
+embedding:
+  supported: true
+  param: _embed
+  note: >-
+    _embed inlines _links targets. Partially useful here — wp:term resolves to the category objects,
+    but `author` does NOT resolve because /wp/v2/users returns 401, and wp:featuredmedia resolves
+    only where featured_media is non-zero.
+hateoas:
+  supported: true
+  field: _links
+  note: >-
+    Every object carries a _links map with self, collection, about and (where applicable) up and
+    wp:term relations, plus targetHints.allow listing the methods available to the current caller —
+    anonymously that is `["GET"]`.
+error_envelope:
+  format: wordpress-rest
+  rfc9457: false
+  content_type: application/json
+  see: errors/alloplex-biotherapeutics-problem-types.yml
+idempotency:
+  supported: false
+  detail: >-
+    No idempotency key, no request-deduplication header, and no documented retry semantics. Moot in
+    practice — every operation catalogued here is a GET and therefore idempotent by HTTP method
+    alone. No `type: Idempotency` pointer is emitted for this provider because no idempotency
+    facility exists.
+request_tracing:
+  request_id_header: none
+  detail: >-
+    The origin returns no X-Request-Id or X-Correlation-Id. Cloudflare's `cf-ray` is the only
+    per-request identifier on the wire and it is a CDN artifact, not something Alloplex support
+    would recognise. A caller cannot cite an application request identifier.
+rate_limiting:
+  documented: false
+  headers: none
+  detail: >-
+    No X-RateLimit-*, no RateLimit-* and no Retry-After was observed across the full probe run.
+    Wordfence is installed on the site and Cloudflare fronts the origin, so throttling may occur at
+    the edge without advertisement. robots.txt requests `Crawl-delay: 10`, which is the only
+    published throughput expectation and is a crawler directive rather than an API limit. Treat
+    throughput as unspecified and be conservative.
+caching:
+  detail: >-
+    Unlike most WordPress deployments this one DOES send cache headers, because WP Engine and
+    Cloudflare sit in front of the origin. Observed on /wp/v2/posts:
+    `cache-control: max-age=600, must-revalidate`, `x-cacheable: SHORT`, `last-modified`,
+    `age`, `cf-cache-status: HIT` and `x-cache: MISS`. A client should honour the 600-second
+    freshness window and can use Last-Modified for conditional requests. Objects also carry
+    `modified` and `modified_gmt` fields, so polling `modified_after` detects change without
+    refetching whole collections.
+  headers_observed: [cache-control, last-modified, age, x-cacheable, x-cache, cf-cache-status]
+content_negotiation:
+  media_types: [application/json]
+  detail: >-
+    JSON only, except /oembed/1.0/embed which accepts format=xml. An alternative HTML
+    representation for any object is available at its `link` URL.
+cors:
+  detail: >-
+    `access-control-allow-headers: Authorization, X-WP-Nonce, Content-Disposition, Content-MD5,
+    Content-Type` and `access-control-expose-headers: X-WP-Total, X-WP-TotalPages, Link` are sent —
+    the WordPress defaults.
+versioning:
+  scheme: namespace-in-path
+  current: wp/v2
+  detail: >-
+    The version is the WordPress core namespace, not an Alloplex version. Namespaces registered on
+    this deployment are oembed/1.0, wpe/cache-plugin/v1, wpe_sign_on_plugin/v1, post-duplicator/v1,
+    MtphrPostDuplicatorSettings/v1, rankmath/v1, wordfence/v1, mcp, wp/v2, wp-site-health/v1,
+    wp-block-editor/v1 and wp-abilities/v1. Alloplex Biotherapeutics does not version this surface
+    itself; its shape changes when WordPress or a plugin is upgraded.
+  see: lifecycle/alloplex-biotherapeutics-lifecycle.yml
+notable_deviations:
+  populated_content: >-
+    In contrast to many corporate WordPress deployments, `content.rendered` and `excerpt.rendered`
+    ARE fully populated on posts and on most pages, so this API returns real prose and not merely
+    identity and metadata. The FAQ page (id 1019) is the known exception, returning an empty
+    content.rendered because its body is authored in page-builder post meta.
+  custom_types_not_exposed: >-
+    The most important gap. The site's sitemaps advertise four custom post types — `publication`,
+    `team_member`, `conference` and `resource` — but none is REST-registered, so scientific
+    publications, leadership bios, conference appearances and downloadable resources are
+    unreachable through this API and return 404 rest_no_route. A consumer needing those must parse
+    HTML from the corresponding sitemap.
+  no_tags: >-
+    The post_tag taxonomy is registered but holds zero terms, so `categories` carries the site's
+    entire editorial grouping.
+  agent_surfaces_gated: >-
+    The deployment registers both a WordPress MCP adapter endpoint and the WordPress Abilities API,
+    but both refuse anonymous callers with 401, so neither is a usable agent surface today.
+cross_references:
+- errors/alloplex-biotherapeutics-problem-types.yml
+- authentication/alloplex-biotherapeutics-authentication.yml
+- lifecycle/alloplex-biotherapeutics-lifecycle.yml
+- data-model/alloplex-biotherapeutics-data-model.yml

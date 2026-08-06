@@ -1,0 +1,114 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "Person",
+        "Organization"
+      ],
+      "@id": "https://alloplexbio.com/#person",
+      "name": "Alloplex Biotherapeutics",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://alloplexbio.com/#logo",
+        "url": "https://alloplexbio.com/wp-content/uploads/2021/05/mark@2x.png",
+        "contentUrl": "https://alloplexbio.com/wp-content/uploads/2021/05/mark@2x.png",
+        "caption": "Alloplex Biotherapeutics",
+        "inLanguage": "en-US",
+        "width": "589",
+        "height": "506"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://alloplexbio.com/#logo",
+        "url": "https://alloplexbio.com/wp-content/uploads/2021/05/mark@2x.png",
+        "contentUrl": "https://alloplexbio.com/wp-content/uploads/2021/05/mark@2x.png",
+        "caption": "Alloplex Biotherapeutics",
+        "inLanguage": "en-US",
+        "width": "589",
+        "height": "506"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://alloplexbio.com/#website",
+      "url": "https://alloplexbio.com",
+      "name": "Alloplex Biotherapeutics",
+      "publisher": {
+        "@id": "https://alloplexbio.com/#person"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://alloplexbio.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://alloplexbio.com/wp-content/uploads/2022/11/Alloplex-Bio.jpg",
+      "url": "https://alloplexbio.com/wp-content/uploads/2022/11/Alloplex-Bio.jpg",
+      "width": "1200",
+      "height": "630",
+      "caption": "Alloplex Biotherapeutics",
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://alloplexbio.com/#webpage",
+      "url": "https://alloplexbio.com/",
+      "name": "Novel Immunotherapy for Cancer | Alloplex Biotherapeutics",
+      "datePublished": "2021-10-20T02:10:34-04:00",
+      "dateModified": "2026-07-26T21:23:19-04:00",
+      "about": {
+        "@id": "https://alloplexbio.com/#person"
+      },
+      "isPartOf": {
+        "@id": "https://alloplexbio.com/#website"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://alloplexbio.com/wp-content/uploads/2022/11/Alloplex-Bio.jpg"
+      },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://alloplexbio.com/#author",
+      "name": "Niroshan Shrestha",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://secure.gravatar.com/avatar/c58e63416e6bda27c9a70128f68357e78fe0652c256150525691386c57d1afba?s=96&amp;d=mm&amp;r=g",
+        "url": "https://secure.gravatar.com/avatar/c58e63416e6bda27c9a70128f68357e78fe0652c256150525691386c57d1afba?s=96&amp;d=mm&amp;r=g",
+        "caption": "Niroshan Shrestha",
+        "inLanguage": "en-US"
+      }
+    },
+    {
+      "@type": "Article",
+      "headline": "Novel Immunotherapy for Cancer | Alloplex Biotherapeutics",
+      "keywords": "immune system,cellular therapy,biotherapeutics,cellular therapeutic",
+      "datePublished": "2021-10-20T02:10:34-04:00",
+      "dateModified": "2026-07-26T21:23:19-04:00",
+      "author": {
+        "@id": "https://alloplexbio.com/#author",
+        "name": "Niroshan Shrestha"
+      },
+      "publisher": {
+        "@id": "https://alloplexbio.com/#person"
+      },
+      "description": "Alloplex presents a patented cell-retraining platform that, by utilizing synergy between key immune pathways, reveals a previously unappreciated dimension of human immunology.",
+      "name": "Novel Immunotherapy for Cancer | Alloplex Biotherapeutics",
+      "@id": "https://alloplexbio.com/#richSnippet",
+      "isPartOf": {
+        "@id": "https://alloplexbio.com/#webpage"
+      },
+      "image": {
+        "@id": "https://alloplexbio.com/wp-content/uploads/2022/11/Alloplex-Bio.jpg"
+      },
+      "inLanguage": "en-US",
+      "mainEntityOfPage": {
+        "@id": "https://alloplexbio.com/#webpage"
+      }
+    }
+  ]
+}

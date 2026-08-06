@@ -1,0 +1,91 @@
+generated: '2026-08-06'
+method: probed
+source: >-
+  Live anonymous probes of https://alloplexbio.com/wp-json/ plus the WordPress REST route index,
+  2026-08-06. Alloplex Biotherapeutics publishes no authentication documentation of its own.
+api: alloplex-biotherapeutics-content-api
+summary: >-
+  The Alloplex Biotherapeutics content API declares NO authentication schemes. The REST index at
+  /wp-json/ returns `"authentication": []`, meaning WordPress core has no application-password or
+  other REST authentication provider registered for anonymous negotiation. The read operations
+  catalogued in this repo require no credentials at all. Everything else — writes, users, settings,
+  menus, menu-items, templates, block-types, font-families, plugins, themes, widgets, sidebars,
+  revisions, autosaves, the `mcp` MCP-adapter namespace, the `wp-abilities/v1` capability registry,
+  `wordfence/v1`, `rankmath/v1`, `post-duplicator/v1`, `wpe_sign_on_plugin/v1`,
+  `wpe/cache-plugin/v1`, `wp-site-health/v1` and `wp-block-editor/v1` — is refused anonymously with
+  a WordPress capability error. The only credential path is a logged-in WordPress session cookie
+  plus an X-WP-Nonce, or an application password issued from wp-admin. Neither is obtainable by a
+  third party, and neither is documented publicly, so no scheme is asserted here.
+schemes: []
+observed:
+- surface: read operations in openapi/alloplex-biotherapeutics-content-openapi.yml
+  auth_required: false
+  evidence: 'All 19 modelled operations returned HTTP 200 with no Authorization header on 2026-08-06.'
+- surface: /wp/v2/users
+  auth_required: true
+  status: 401
+  code: rest_user_cannot_view
+  evidence: 'Sorry, you are not allowed to list users.'
+- surface: /wp/v2/settings
+  auth_required: true
+  status: 401
+  code: rest_forbidden
+  evidence: 'Sorry, you are not allowed to do that.'
+- surface: /wp/v2/menus, /wp/v2/menu-items
+  auth_required: true
+  status: 401
+- surface: /wp/v2/templates, /wp/v2/block-types, /wp/v2/font-families, /wp/v2/plugins, /wp/v2/themes, /wp/v2/widgets, /wp/v2/sidebars, /wp/v2/pattern-directory/patterns
+  auth_required: true
+  status: 401
+- surface: /wp/v2/posts/{id}/revisions, /wp/v2/pages/{id}/revisions, autosaves
+  auth_required: true
+  status: 401
+- surface: /mcp/mcp-adapter-default-server
+  auth_required: true
+  status: 401
+  code: rest_forbidden
+  note: >-
+    The site installs the WordPress MCP adapter and registers a Streamable-HTTP MCP endpoint at
+    POST /wp-json/mcp/mcp-adapter-default-server. Both `initialize` and `tools/list` JSON-RPC calls
+    were refused anonymously with 401 rest_forbidden, so the live tool set and its inputSchemas
+    could not be introspected. NO MCP server artifact is claimed for this provider: the endpoint is
+    a WordPress plugin default, not a hosted MCP product Alloplex markets, and its tools are not
+    publicly enumerable.
+- surface: /wp-abilities/v1/abilities, /wp-abilities/v1/categories
+  auth_required: true
+  status: 401
+  code: rest_forbidden
+  note: >-
+    The WordPress Abilities API — an agent-facing capability registry — is registered on this
+    deployment but every endpoint under it, including the read-only /abilities and /categories
+    listings, refuses anonymous callers. No agent surface is claimed for this provider.
+- surface: /wordfence/v1/*, /rankmath/v1/*, /post-duplicator/v1/*, /wpe_sign_on_plugin/v1/*, /wpe/cache-plugin/v1/*, /wp-site-health/v1/*, /wp-block-editor/v1/*
+  auth_required: true
+  status: 401
+- surface: /batch/v1
+  auth_required: true
+  status: 403
+  note: The WordPress REST batch endpoint is registered but refuses anonymous callers.
+- surface: /wp/v2/comments
+  auth_required: false
+  status: 200
+  note: >-
+    Not an auth wall — the collection is readable and simply empty (X-WP-Total 0) because comments
+    are closed site-wide.
+credential_issuance:
+  self_service: false
+  note: >-
+    There is no signup, no developer portal, no API key issuance and no OAuth client registration.
+    Alloplex Biotherapeutics does not market this surface as an API; it is the WordPress content
+    surface its own site runs on. The site does operate a gated shareholder portal at
+    /portal-login/, but that is a human web login for investors, not an API credential path.
+transport:
+  https_required: true
+  tls_version_observed: TLSv1.3
+  hsts: false
+  cdn: Cloudflare in front of WP Engine origin
+  note: >-
+    No Strict-Transport-Security header is sent, so HTTPS is not pinned for a first-time client.
+    Responses carry `x-content-type-options: nosniff` and an
+    `access-control-allow-headers: Authorization, X-WP-Nonce, ...` preflight allowance, which is the
+    standard WordPress cookie+nonce credential path.

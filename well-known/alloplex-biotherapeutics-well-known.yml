@@ -1,0 +1,62 @@
+generated: '2026-08-06'
+method: probed
+source: Live anonymous GETs against https://alloplexbio.com on 2026-08-06.
+host: https://alloplexbio.com
+summary: >-
+  Alloplex Biotherapeutics publishes NO /.well-known/ discovery documents. Every RFC 8615 path
+  probed returned 404. This is a recorded absence, not a failed run — a control path
+  (/.well-known/THIS-SHOULD-404-control) was probed in the same pass and also returned 404 with the
+  same HTML body, confirming the host does not answer 200 for arbitrary well-known paths and that
+  these 404s are genuine rather than a soft-404 catch-all.
+control:
+  path: /.well-known/THIS-SHOULD-404-control
+  status: 404
+  note: Negative control. Proves the 404s below are real.
+documents:
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/oauth-protected-resource
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /.well-known/agent-card.json
+  status: 404
+- path: /.well-known/agent.json
+  status: 404
+- path: /.well-known/dnt-policy.txt
+  status: 404
+- path: /.well-known/change-password
+  status: 404
+related_discovery:
+  note: >-
+    The host does publish non-well-known discovery surfaces, catalogued elsewhere in this repo.
+  documents:
+  - path: /wp-json/
+    status: 200
+    description: WordPress REST route index — 219 routes across 12 namespaces. The real discovery document for this host.
+    artifact: openapi/alloplex-biotherapeutics-content-openapi.yml
+  - path: /robots.txt
+    status: 200
+    description: 'Allows all agents except /wp-admin/; sets Crawl-delay: 10; points at the sitemap index.'
+  - path: /sitemap_index.xml
+    status: 200
+    description: >-
+      Rank Math sitemap index listing seven child sitemaps — post, page, publication, team_member,
+      conference, resource and category. Notably the publication, team_member, conference and
+      resource types are NOT exposed through the REST API, so this sitemap is the only
+      machine-readable route to them.
+  - path: /feed/
+    status: 200
+    description: RSS 2.0 feed of the 61 published posts.
+consent_identity:
+  ai_preferences: false
+  content_signal: false
+  detail: >-
+    No /.well-known/aipref, no Content-Signal header and no AI-usage declaration was found. robots.txt
+    carries no AI-agent-specific directives — it applies one rule to all user agents.

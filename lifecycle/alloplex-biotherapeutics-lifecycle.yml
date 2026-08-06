@@ -1,0 +1,59 @@
+generated: '2026-08-06'
+method: probed
+source: >-
+  Live probes of https://alloplexbio.com/ and https://alloplexbio.com/wp-json/ on 2026-08-06, plus a
+  search of the company's site for a status page, SLA, versioning policy or deprecation policy.
+api: alloplex-biotherapeutics-content-api
+summary: >-
+  Alloplex Biotherapeutics publishes NO API lifecycle commitments of any kind. There is no
+  versioning policy, no deprecation policy, no Sunset/Deprecation header support, no SLA, no uptime
+  target and no status page. This is expected — the company does not market this surface as an API
+  and has no developer program. What follows is the observed reality, not a published contract.
+versioning:
+  scheme: namespace-in-path
+  current: wp/v2
+  policy_url: null
+  detail: >-
+    The only version token is the upstream WordPress core namespace `wp/v2`. Alloplex
+    Biotherapeutics does not version this surface; the contract changes whenever WordPress core or
+    one of the installed plugins is upgraded, with no announcement and no migration window. A
+    consumer inherits WordPress's own compatibility posture, not a commitment from Alloplex.
+  upstream_reference: https://developer.wordpress.org/rest-api/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  detail: >-
+    No RFC 8594 Sunset header and no Deprecation header was returned on any probed response. No
+    deprecation policy page exists on alloplexbio.com. No pointer of type Deprecation is emitted.
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+  detail: No service-level agreement, availability commitment or support-response commitment is published for this surface.
+status_page:
+  url: null
+  detail: >-
+    No status page was found. Neither status.alloplexbio.com nor a /status path exists, and the
+    site publishes no incident history. No pointer of type StatusPage is emitted. Availability is
+    effectively that of the underlying WP Engine origin behind Cloudflare, which neither party
+    reports to Alloplex's visitors.
+change_management:
+  changelog_url: null
+  detail: >-
+    There is no API changelog. The company's editorial "Releases and Updates" feed at
+    https://alloplexbio.com/releases-and-updates/ is corporate and clinical news — FDA
+    designations, trial milestones, conference appearances — not API change communication, so no
+    ChangeLog pointer is emitted for it. The nearest usable change signal is the `modified` /
+    `modified_gmt` field on every object and the `Last-Modified` response header, which let a
+    consumer detect content change by polling `modified_after`.
+observed_stability:
+  route_count: 219
+  namespaces: 12
+  detail: >-
+    The route surface is a function of the installed plugin set (Rank Math SEO, Wordfence, WP Engine
+    cache and sign-on, Post Duplicator, the WordPress MCP adapter, the WordPress Abilities API). Any
+    plugin activation or removal changes the namespace list without notice.
+cross_references:
+- conventions/alloplex-biotherapeutics-conventions.yml
+- openapi/alloplex-biotherapeutics-content-openapi.yml

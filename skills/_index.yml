@@ -1,0 +1,42 @@
+generated: '2026-08-06'
+method: generated
+source: openapi/alloplex-biotherapeutics-content-openapi.yml
+note: >-
+  Alloplex Biotherapeutics publishes no AGENTS.md, no skills and no developer documentation of its
+  own — these are API Evangelist packaged operating instructions for the one machine-readable
+  surface it does expose, the anonymous WordPress REST content API behind alloplexbio.com. Every
+  operationId referenced below exists verbatim in the OpenAPI in this repo. There is no product API,
+  so there are no product flows to package; the skills cover tracking the clinical and regulatory
+  press archive, reading corporate content, and harvesting the media library — together with the
+  three traps a naive consumer falls into on this site: the post_tag taxonomy is empty so all
+  editorial grouping lives in categories; the `author` field cannot be resolved because
+  /wp/v2/users returns 401; and the publications, team, conference and resource collections are
+  absent from the API entirely despite appearing in the sitemaps.
+api: alloplex-biotherapeutics:alloplex-biotherapeutics-content-api
+skills:
+- file: alloplex-biotherapeutics-track-clinical-and-regulatory-news.md
+  name: Track Alloplex Biotherapeutics clinical, regulatory and scientific news
+  description: >-
+    Build and incrementally poll an index of the 61 published posts covering the FDA Fast Track
+    designation for SUPLEXA in MSI-H colorectal cancer, SUPLEXA-101 Phase 1 trial milestones,
+    scientific publications and conference appearances — using category filters for topic
+    separation and modified_after plus Last-Modified for cheap re-sync.
+  api: openapi/alloplex-biotherapeutics-content-openapi.yml
+  operations: [listCategories, listPosts, getPost, search]
+- file: alloplex-biotherapeutics-read-corporate-content.md
+  name: Read Alloplex Biotherapeutics corporate and scientific content
+  description: >-
+    Enumerate the 19 published corporate pages — About, Investors, Scientists, Information for
+    Patients, Media and Press, Media Kit, FAQ, Terms of use, Privacy Policy, Contact — read their
+    populated bodies, and fall back to HTML for the FAQ page and for the four content types the API
+    does not expose.
+  api: openapi/alloplex-biotherapeutics-content-openapi.yml
+  operations: [listTypes, listPages, getPage, search]
+- file: alloplex-biotherapeutics-harvest-media-library.md
+  name: Harvest the Alloplex Biotherapeutics media library
+  description: >-
+    Page through the 225-item media library for the company logo, scientific figures, press imagery
+    and PDF documents such as the executive summary, with source URLs, MIME types, alt text and
+    pre-rendered size variants, including incremental re-sync via modified_after.
+  api: openapi/alloplex-biotherapeutics-content-openapi.yml
+  operations: [listMedia, getMediaItem]

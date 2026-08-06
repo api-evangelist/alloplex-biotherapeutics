@@ -1,0 +1,36 @@
+generated: '2026-08-06'
+method: searched
+source: https://alloplexbio.com/
+description: >-
+  The schema.org JSON-LD @graph Alloplex Biotherapeutics publishes on every page of alloplexbio.com,
+  saved verbatim from the homepage HTML. Emitted by the Rank Math SEO plugin. It is the only
+  structured, machine-readable description of the company Alloplex Biotherapeutics publishes
+  anywhere, and — importantly — it is NOT projected into the WordPress REST API, so it is reachable
+  only by parsing the HTML. The graph carries six nodes. The substantive one is a combined
+  Person/Organization node naming the company and its 589x506 logo ImageObject. A WebSite node
+  declares a SearchAction template (https://alloplexbio.com/?s={search_term_string}), which is the
+  site's own documented search entry point. A Person node carries the content author, which is
+  notable because that same author identity is UNRESOLVABLE through the REST API — /wp/v2/users
+  returns 401 — making this graph the only public route to it.
+files:
+- file: alloplex-biotherapeutics-organization.jsonld
+  page: https://alloplexbio.com/
+  http_status: 200
+  content_type: text/html; charset=UTF-8
+  fetched: '2026-08-06'
+  nodes: [Person/Organization, WebSite, ImageObject, WebPage, Person, Article]
+notable:
+  organization_node: >-
+    Typed as both Person and Organization (@id https://alloplexbio.com/#person) — a Rank Math
+    default rather than a deliberate modelling choice. It carries `name` and `logo`/`image` but no
+    legal name, no address, no founding date and no `sameAs` links, so it is thinner than the
+    company facts available in prose on /about/.
+  search_action: >-
+    The WebSite node advertises a SearchAction at https://alloplexbio.com/?s={search_term_string}.
+    The REST equivalent is the `search` operation in this repo's OpenAPI.
+  no_sameas: >-
+    No sameAs array is emitted, so the graph does not link the company to its LinkedIn profile or
+    any other identifier. This is a real discoverability gap the provider could close.
+note: >-
+  The same @graph is present on all published pages and posts, varying in the WebPage, Article and
+  Person nodes. Saved verbatim; nothing here was authored by API Evangelist.

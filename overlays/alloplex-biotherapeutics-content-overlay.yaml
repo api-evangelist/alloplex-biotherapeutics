@@ -1,0 +1,85 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Alloplex Biotherapeutics Content API
+  version: '1.0.0'
+  description: >-
+    An OpenAPI Overlay 1.0.0 document recording the enhancements API Evangelist applied on top of
+    the bare WordPress route index published at https://alloplexbio.com/wp-json/. The route index is
+    a machine-readable list of paths, methods and argument names — it carries no summaries, no
+    descriptions, no response schemas, no examples, no tags and no operationIds. Everything this
+    overlay adds is either an observation from a live anonymous probe on 2026-08-06 or editorial
+    context; no capability is asserted that the API does not have.
+x-generated: '2026-08-06'
+x-method: generated
+x-source: openapi/alloplex-biotherapeutics-content-openapi.yml
+extends: ./../openapi/alloplex-biotherapeutics-content-openapi.yml
+actions:
+- target: $.info
+  description: >-
+    Name the surface, state plainly that Alloplex Biotherapeutics runs no developer program, and
+    carry the provenance of the derivation plus the list of namespaces excluded as auth-gated. The
+    route index supplies only a site name and an empty description.
+  update:
+    x-overlay-note: Provenance and framing added by API Evangelist; not published by the provider.
+- target: $.servers
+  description: Declare the production server. The route index has no servers construct.
+  update:
+    x-overlay-note: Server URL taken from the `url` field of the /wp-json/ index document.
+- target: $.tags
+  description: >-
+    Group the 19 operations into seven functional tags — posts, pages, media, taxonomy, search,
+    discovery, oembed — and annotate each with the count actually observed, so a reader learns
+    immediately that the tags taxonomy is empty and that categories carry all editorial grouping.
+  update:
+    x-overlay-note: Tags and their observed counts added by API Evangelist.
+- target: $.paths.*.get
+  description: >-
+    Add operationId, summary and description to every operation. WordPress publishes none of these;
+    an agent binding tools to this API has nothing to name them with otherwise.
+  update:
+    x-overlay-note: operationId/summary/description authored by API Evangelist.
+- target: $.paths['/wp/v2/posts'].get
+  description: >-
+    Record the observed collection size (X-WP-Total 61) and document the X-WP-Total /
+    X-WP-TotalPages / Link response headers, which are the only place pagination totals appear — the
+    body is a bare array with no envelope.
+  update:
+    x-overlay-note: Observed counts and pagination headers added by API Evangelist.
+- target: $.paths['/wp/v2/pages'].get
+  description: >-
+    Record the observed collection size (19) and warn that content.rendered is an empty string on
+    the FAQ page because its body is authored in page-builder post meta.
+  update:
+    x-overlay-note: Empty-content caveat added by API Evangelist from live observation.
+- target: $.paths['/wp/v2/tags'].get
+  description: >-
+    Flag that the tags collection is registered but empty (X-WP-Total 0), so a consumer does not
+    build editorial grouping on it.
+  update:
+    x-overlay-note: Empty-collection caveat added by API Evangelist from live observation.
+- target: $.paths['/wp/v2/types'].get
+  description: >-
+    Record that the four custom post types the site's sitemaps advertise — publication, team_member,
+    conference and resource — are NOT REST-registered and therefore do not appear in this response.
+    This is the largest gap between the website and its API.
+  update:
+    x-overlay-note: Missing-custom-post-type gap documented by API Evangelist.
+- target: $.components.schemas
+  description: >-
+    Author all 13 response schemas. The WordPress route index publishes request argument names only
+    and describes no response body whatsoever, so every schema here was reconstructed from live
+    anonymous responses.
+  update:
+    x-overlay-note: Response schemas reconstructed from observed payloads by API Evangelist.
+- target: $.components.schemas.Error
+  description: >-
+    Document the bespoke WordPress error envelope and state explicitly that it is NOT RFC 9457
+    problem+json, so an agent does not attempt to parse a `type`/`title`/`instance` triple.
+  update:
+    x-overlay-note: Error envelope documented by API Evangelist; see errors/alloplex-biotherapeutics-problem-types.yml.
+- target: $.components.parameters.Fields
+  description: >-
+    Promote the `_fields` sparse-fieldset parameter, which the route index lists as a bare argument
+    name with no explanation, into the single most useful control on this API for payload size.
+  update:
+    x-overlay-note: Sparse-fieldset guidance added by API Evangelist.

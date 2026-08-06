@@ -1,0 +1,190 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  openapi/alloplex-biotherapeutics-content-openapi.yml — schema $ref links, id-reference fields and
+  the `_links` relation map observed on live anonymous responses from
+  https://alloplexbio.com/wp-json/ on 2026-08-06.
+api: alloplex-biotherapeutics-content-api
+summary: >-
+  The entity-relationship graph of the Alloplex Biotherapeutics content API. It is the standard
+  WordPress content model, narrowed to the anonymously readable subset. Two structural facts shape
+  it: the `author` edge is unresolvable because /wp/v2/users is 401, and the four custom post types
+  the sitemaps advertise (publication, team_member, conference, resource) are absent from the graph
+  entirely because they are not REST-registered.
+entities:
+- name: Post
+  collection: /wp/v2/posts
+  count_observed: 61
+  id_field: id
+  id_type: integer
+  schema: Post
+  description: >-
+    A press release, clinical or scientific news item, conference note, media-coverage entry or
+    opinion piece. The primary content entity of this API and the only one with a populated body
+    plus editorial classification.
+  key_fields: [id, slug, date, modified, title.rendered, content.rendered, excerpt.rendered, link, categories, author, featured_media, status, type]
+- name: Page
+  collection: /wp/v2/pages
+  count_observed: 19
+  id_field: id
+  id_type: integer
+  schema: Page
+  description: >-
+    A corporate page — About, Investors, Scientists, Information for Patients, Media and Press,
+    Media Kit, FAQ, Releases and Updates, Terms of use, Privacy Policy, Contact, and the
+    shareholder-portal pages. All are top-level (parent 0) on this deployment, so the `parent`
+    self-relationship exists in the schema but is unused.
+  key_fields: [id, slug, date, modified, title.rendered, content.rendered, link, parent, menu_order, status, type]
+- name: MediaItem
+  collection: /wp/v2/media
+  count_observed: 225
+  id_field: id
+  id_type: integer
+  schema: MediaItem
+  description: >-
+    A media-library attachment — images plus PDF documents such as the company executive summary.
+    `source_url` is the direct file URL and needs no further resolution.
+  key_fields: [id, slug, media_type, mime_type, source_url, alt_text, post, media_details]
+- name: Term
+  collection: /wp/v2/categories, /wp/v2/tags
+  count_observed: 11
+  id_field: id
+  id_type: integer
+  schema: Term
+  description: >-
+    A taxonomy term. Eleven category terms carry the site's entire editorial grouping
+    (company-news 16, conferences 19, scientific-news 17, opinion 13, diary-marker 13,
+    media-coverage 12, clinical-news 11, research-news 5, backgrounder 4, audio-video 2,
+    uncategorized 0). The post_tag taxonomy is registered but holds zero terms.
+  key_fields: [id, name, slug, taxonomy, count, parent, link]
+- name: PostType
+  collection: /wp/v2/types
+  count_observed: 12
+  id_field: slug
+  id_type: string
+  schema: PostType
+  description: Registry metadata describing each REST-registered post type and its rest_base.
+- name: Taxonomy
+  collection: /wp/v2/taxonomies
+  count_observed: 4
+  id_field: slug
+  id_type: string
+  schema: Taxonomy
+  description: Registry metadata for category, post_tag, nav_menu and wp_pattern_category.
+- name: PostStatus
+  collection: /wp/v2/statuses
+  count_observed: 2
+  id_field: slug
+  id_type: string
+  schema: PostStatus
+  description: Registry metadata for the statuses visible anonymously — publish and acf-disabled.
+- name: SearchResult
+  collection: /wp/v2/search
+  id_field: id
+  id_type: integer
+  schema: SearchResult
+  description: >-
+    A projection, not a stored entity. Carries id, title (plain string, not a rendered object), url,
+    type and subtype, with a _links.self pointing at the full Post or Page.
+relationships:
+- from: Post
+  to: Term
+  type: has_many
+  via: categories
+  cardinality: 0..n
+  resolvable: true
+  detail: Array of category term ids. Resolve through /wp/v2/categories/{id} or inline with _embed (wp:term).
+- from: Post
+  to: Term
+  type: has_many
+  via: tags
+  cardinality: 0
+  resolvable: true
+  detail: Always empty on this deployment — the post_tag taxonomy holds no terms.
+- from: Post
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  cardinality: 0..1
+  resolvable: true
+  detail: Zero when unset. Resolve through /wp/v2/media/{id} or inline with _embed (wp:featuredmedia).
+- from: Page
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  cardinality: 0..1
+  resolvable: true
+- from: MediaItem
+  to: Post
+  type: belongs_to
+  via: post
+  cardinality: 0..1
+  resolvable: true
+  detail: The object the attachment was uploaded to. Null for library-level uploads.
+- from: Post
+  to: User
+  type: belongs_to
+  via: author
+  cardinality: 1
+  resolvable: false
+  detail: >-
+    BROKEN EDGE. `author` is a populated integer on every post, but /wp/v2/users returns 401
+    rest_user_cannot_view, so the id cannot be resolved to a name through this API. The author name
+    is available only in the HTML page's JSON-LD graph.
+- from: Page
+  to: User
+  type: belongs_to
+  via: author
+  cardinality: 1
+  resolvable: false
+- from: Page
+  to: Page
+  type: belongs_to
+  via: parent
+  cardinality: 0..1
+  resolvable: true
+  detail: Self-referential hierarchy. Declared in the schema but unused — every page is top-level on this deployment.
+- from: Term
+  to: Term
+  type: belongs_to
+  via: parent
+  cardinality: 0..1
+  resolvable: true
+  detail: Category hierarchy. Flat on this deployment.
+- from: Post
+  to: PostType
+  type: belongs_to
+  via: type
+  cardinality: 1
+  resolvable: true
+  detail: Resolve through /wp/v2/types/{type}; also exposed as the `about` link relation.
+- from: Term
+  to: Taxonomy
+  type: belongs_to
+  via: taxonomy
+  cardinality: 1
+  resolvable: true
+missing_entities:
+  note: >-
+    Four entities exist on the website and in its sitemaps but are NOT part of this API's graph,
+    because their post types are not REST-registered. Requesting them returns 404 rest_no_route.
+    This is the largest gap between what alloplexbio.com publishes and what its API exposes.
+  entities:
+  - name: publication
+    sitemap: https://alloplexbio.com/publication-sitemap.xml
+    html_index: https://alloplexbio.com/publications/
+    detail: Peer-reviewed scientific publications about SUPLEXA and the ENLIST platform.
+  - name: team_member
+    sitemap: https://alloplexbio.com/team_member-sitemap.xml
+    html_index: https://alloplexbio.com/about/
+    detail: Leadership and scientific-team biographies.
+  - name: conference
+    sitemap: https://alloplexbio.com/conference-sitemap.xml
+    detail: Conference appearances and presentations.
+  - name: resource
+    sitemap: https://alloplexbio.com/resource-sitemap.xml
+    detail: Downloadable resources. Sitemap last modified 2023-08-22, so likely dormant.
+render: null
+cross_references:
+- openapi/alloplex-biotherapeutics-content-openapi.yml
+- conventions/alloplex-biotherapeutics-conventions.yml

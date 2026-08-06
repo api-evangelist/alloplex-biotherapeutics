@@ -1,0 +1,107 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  openapi/alloplex-biotherapeutics-content-openapi.yml plus the verbatim error bodies returned by
+  live anonymous probes of https://alloplexbio.com/wp-json/ on 2026-08-06.
+api: alloplex-biotherapeutics-content-api
+format: wordpress-rest
+rfc9457: false
+content_type: application/json
+note: >-
+  This API does NOT use RFC 9457 problem+json. It returns the WordPress REST error envelope as
+  application/json — a flat object with `code` (machine-readable slug), `message` (human string) and
+  `data` (an object carrying at minimum `status`, plus `params` and `details` on validation
+  failures). There is no `type` URI, no `title`, no `instance` and no problem registry. Alloplex
+  Biotherapeutics publishes no error reference of its own; every slug below was observed verbatim
+  against the live host, and none is inferred.
+envelope:
+  fields:
+  - name: code
+    type: string
+    description: Machine-readable error slug. This is the field to branch on.
+  - name: message
+    type: string
+    description: Human-readable, localized message. Not stable — do not match on it.
+  - name: data.status
+    type: integer
+    description: Mirrors the HTTP status code.
+  - name: data.params
+    type: object
+    description: Present on rest_invalid_param; maps the offending parameter name to its constraint message.
+  - name: data.details
+    type: object
+    description: >-
+      Present on rest_invalid_param; per-parameter object carrying a finer-grained `code`
+      (e.g. rest_out_of_bounds), `message` and `data`.
+  example:
+    code: rest_post_invalid_id
+    message: Invalid post ID.
+    data:
+      status: 404
+problem_types:
+- code: rest_no_route
+  status: 404
+  title: No route matched
+  observed: true
+  message: No route was found matching the URL and request method.
+  remediation: >-
+    Check the path against the route index at /wp-json/. 219 routes are registered across twelve
+    namespaces. Note that the site's `publication`, `team_member`, `conference` and `resource`
+    custom post types are NOT REST-registered — requesting /wp/v2/publication returns this error.
+- code: rest_post_invalid_id
+  status: 404
+  title: Invalid object ID
+  observed: true
+  message: Invalid post ID.
+  operations: [getPost, getPage, getMediaItem]
+  remediation: The id does not exist or is not published. List the collection first and use an id from it.
+- code: rest_term_invalid
+  status: 404
+  title: Invalid term ID
+  observed: true
+  message: Term does not exist.
+  operations: [getCategory]
+  remediation: Resolve the term id from listCategories. Eleven category terms exist; the tags taxonomy is empty.
+- code: rest_invalid_param
+  status: 400
+  title: Parameter failed validation
+  observed: true
+  message: 'Invalid parameter(s): per_page'
+  operations: [listPosts, listPages, listMedia, listCategories, listTags, search]
+  remediation: >-
+    Read data.params and data.details for the specific constraint. The most common cause is
+    per_page outside 1-100; the API answers 'per_page must be between 1 (inclusive) and 100
+    (inclusive)' with data.details.per_page.code = rest_out_of_bounds.
+- code: rest_user_cannot_view
+  status: 401
+  title: Not allowed to list users
+  observed: true
+  message: Sorry, you are not allowed to list users.
+  remediation: >-
+    Author identity is not exposed on this deployment. The `author` integer on a post cannot be
+    resolved to a name through the API; use the JSON-LD author on the HTML page instead.
+- code: rest_forbidden
+  status: 401
+  title: Not allowed
+  observed: true
+  message: Sorry, you are not allowed to do that.
+  remediation: >-
+    The generic WordPress capability refusal. Returned for /wp/v2/settings, the mcp namespace, the
+    wp-abilities/v1 registry, and every plugin-administrative namespace. There is no third-party
+    credential path — see authentication/alloplex-biotherapeutics-authentication.yml.
+- code: rest_cannot_view
+  status: 401
+  title: Not allowed to view this collection
+  observed: true
+  remediation: >-
+    Returned by the editor-surface collections (menus, menu-items, templates, block-types,
+    font-families, plugins, themes, widgets, sidebars). These are not part of the public content
+    surface.
+unmodelled_statuses:
+  note: >-
+    No 5xx response was observed during the probe run, and the API publishes no documented server
+    error contract. A 403 was observed only on /batch/v1. Treat any 5xx as a transport-level
+    Cloudflare/WP Engine failure rather than an application error with a stable slug.
+cross_references:
+- conventions/alloplex-biotherapeutics-conventions.yml
+- authentication/alloplex-biotherapeutics-authentication.yml
