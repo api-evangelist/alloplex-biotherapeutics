@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Alloplex Biotherapeutics Content Oembed API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "oembed",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an oEmbed response for an alloplexbio.com URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://alloplexbio.com/wp-json/oembed/1.0/embed",
+            "params": [
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "The URL of the resource for which to fetch oEmbed data."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "The oEmbed format to use."
+              },
+              {
+                "name": "maxwidth",
+                "value": "",
+                "type": "query",
+                "description": "The maximum width of the embed frame in pixels."
+              }
+            ]
+          },
+          "docs": "The oEmbed 1.0 provider endpoint. Returns embed metadata (title, author, provider, HTML iframe) for any published alloplexbio.com URL."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

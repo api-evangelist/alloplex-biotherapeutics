@@ -1,0 +1,159 @@
+openapi: 3.2.0
+info:
+  title: Alloplex Biotherapeutics Content Search API
+  version: wp/v2
+  summary: Anonymously readable WordPress REST content API behind alloplexbio.com.
+  description: The read-only content surface Alloplex Biotherapeutics exposes at https://alloplexbio.com/wp-json. Alloplex Biotherapeutics is a clinical-stage cellular immunotherapy company developing SUPLEXA, a non-engineered autologous multi-cellular therapy produced by its ENLIST cell-retraining platform; it runs no developer program and markets no product API. This document is an API Evangelist derivation of the WordPress `wp/v2` and `oembed/1.0` route index the site publishes at /wp-json/, restricted to the operations that were verified to return data anonymously on 2026-08-06. Write operations, `/wp/v2/users`, `/wp/v2/settings`, `/wp/v2/menus`, `/wp/v2/menu-items`, `/wp/v2/templates`, `/wp/v2/block-types`, `/wp/v2/font-families`, `/wp/v2/plugins`, `/wp/v2/themes`, `/wp/v2/widgets`, `/wp/v2/sidebars`, revisions, autosaves, the `mcp` namespace, the `wp-abilities/v1` namespace, the `wordfence/v1` namespace, the `rankmath/v1` namespace, the `post-duplicator/v1` namespace, the `wpe_sign_on_plugin/v1` namespace, the `wpe/cache-plugin/v1` namespace, the `wp-site-health/v1` namespace and `wp-block-editor/v1` all require authentication and are deliberately excluded — see x-api-evangelist-provenance.
+  contact:
+    name: Alloplex Biotherapeutics
+    url: https://alloplexbio.com/contact/
+  x-api-evangelist-provenance: Derived by the API Evangelist enrichment pipeline from the live WordPress REST route index at https://alloplexbio.com/wp-json/ (219 routes across the namespaces oembed/1.0, wpe/cache-plugin/v1, wpe_sign_on_plugin/v1, post-duplicator/v1, MtphrPostDuplicatorSettings/v1, rankmath/v1, wordfence/v1, mcp, wp/v2, wp-site-health/v1, wp-block-editor/v1 and wp-abilities/v1) and verified against live anonymous responses on 2026-08-06. Every parameter below appears verbatim in the route index `args` for that endpoint, and every operation modelled here returned 200 without credentials. Alloplex Biotherapeutics publishes no OpenAPI, no developer documentation and no API reference for this surface; the humanURL in apis.yml points at the upstream WordPress REST handbook that defines the wp/v2 contract. Nothing here was obtained with credentials.
+servers:
+- url: https://alloplexbio.com/wp-json
+  description: Production content API
+tags:
+- name: search
+  description: Cross-content search across published posts and pages.
+paths:
+  /wp/v2/search:
+    get:
+      tags:
+      - search
+      operationId: search
+      summary: Search across content
+      description: Cross-content search returning lightweight result objects (id, title, url, type, subtype) with _links to the full object. The most efficient way to locate an Alloplex press release or corporate page by keyword.
+      parameters:
+      - $ref: '#/components/parameters/Context'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PerPage'
+      - name: search
+        in: query
+        description: Limit results to those matching a string.
+        schema:
+          type: string
+          examples:
+          - SUPLEXA
+      - name: type
+        in: query
+        description: Limit results to items of an object type.
+        schema:
+          type: string
+          enum:
+          - post
+          - term
+          - post-format
+          default: post
+      - name: subtype
+        in: query
+        description: Limit results to items of one or more object subtypes.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - post
+            - page
+            - any
+          default:
+          - any
+      responses:
+        '200':
+          description: A list of search results
+          headers:
+            X-WP-Total:
+              description: Total number of results matching the query.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of result pages.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SearchResult'
+components:
+  parameters:
+    PerPage:
+      name: per_page
+      in: query
+      description: Maximum number of items to be returned in result set.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+    Context:
+      name: context
+      in: query
+      description: Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only.
+      schema:
+        type: string
+        enum:
+        - view
+        - embed
+        default: view
+    Page:
+      name: page
+      in: query
+      description: Current page of the collection.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  schemas:
+    Links:
+      type: object
+      description: HAL-style hypermedia links. Every collection and item response carries these.
+      additionalProperties:
+        type: array
+        items:
+          type: object
+          properties:
+            href:
+              type: string
+              format: uri
+            embeddable:
+              type: boolean
+            name:
+              type: string
+            templated:
+              type: boolean
+            taxonomy:
+              type: string
+            targetHints:
+              type: object
+              additionalProperties: true
+    SearchResult:
+      type: object
+      description: A lightweight cross-content search result.
+      properties:
+        id:
+          type: integer
+          examples:
+          - 910
+        title:
+          type: string
+          description: The title for the object. Note this is a plain string here
+          not a rendered object.: null
+        url:
+          type: string
+          format: uri
+        type:
+          type: string
+          examples:
+          - post
+        subtype:
+          type: string
+          examples:
+          - post
+        _links:
+          $ref: '#/components/schemas/Links'
+      required:
+      - id
+      - title
+      - url
+      - type
+      - subtype

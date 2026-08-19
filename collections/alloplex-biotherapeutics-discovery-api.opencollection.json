@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Alloplex Biotherapeutics Content Discovery API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the REST API index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://alloplexbio.com/wp-json/",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Restrict the response to a single namespace."
+              }
+            ]
+          },
+          "docs": "Returns the site index — name, description, URL, home, timezone, the registered namespaces, the authentication methods offered, and the full route table (219 routes on this deployment)."
+        },
+        {
+          "info": {
+            "name": "Get the wp/v2 namespace index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://alloplexbio.com/wp-json/wp/v2",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+              }
+            ]
+          },
+          "docs": "Returns the route table for the WordPress core `wp/v2` namespace only."
+        },
+        {
+          "info": {
+            "name": "List post types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://alloplexbio.com/wp-json/wp/v2/types",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+              }
+            ]
+          },
+          "docs": "Lists the registered post types visible to the REST API — 12 on this deployment. Note that the four custom post types the site's sitemaps expose (publication, team_member, conference, resource) are NOT REST-registered and do not appear here."
+        },
+        {
+          "info": {
+            "name": "Get a post type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://alloplexbio.com/wp-json/wp/v2/types/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "An alphanumeric identifier for the post type."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+              }
+            ]
+          },
+          "docs": "Retrieves a single registered post type by slug."
+        },
+        {
+          "info": {
+            "name": "List taxonomies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://alloplexbio.com/wp-json/wp/v2/taxonomies",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to taxonomies associated with a specific post type."
+              }
+            ]
+          },
+          "docs": "Lists the registered taxonomies — category, post_tag, nav_menu and wp_pattern_category on this deployment."
+        },
+        {
+          "info": {
+            "name": "Get a taxonomy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://alloplexbio.com/wp-json/wp/v2/taxonomies/:taxonomy",
+            "params": [
+              {
+                "name": "taxonomy",
+                "value": "",
+                "type": "path",
+                "description": "An alphanumeric identifier for the taxonomy."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+              }
+            ]
+          },
+          "docs": "Retrieves a single registered taxonomy by slug."
+        },
+        {
+          "info": {
+            "name": "List post statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://alloplexbio.com/wp-json/wp/v2/statuses",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+              }
+            ]
+          },
+          "docs": "Lists the post statuses visible to the caller. Anonymously this returns `publish` and `acf-disabled` on this deployment."
+        },
+        {
+          "info": {
+            "name": "Get a post status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://alloplexbio.com/wp-json/wp/v2/statuses/:status",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "path",
+                "description": "An alphanumeric identifier for the status."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+              }
+            ]
+          },
+          "docs": "Retrieves a single post status by slug."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

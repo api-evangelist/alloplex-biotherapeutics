@@ -1,0 +1,188 @@
+{
+  "item": [
+    {
+      "id": "09c58fb9-5ec9-4415-a52a-adc8486ab7e3",
+      "name": "oembed",
+      "description": {
+        "content": "oEmbed 1.0 provider endpoint for alloplexbio.com URLs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ddf2bd51-dea1-42cd-ab58-8ecba2da08cb",
+          "name": "Get an oEmbed response for an alloplexbio.com URL",
+          "request": {
+            "name": "Get an oEmbed response for an alloplexbio.com URL",
+            "description": {
+              "content": "The oEmbed 1.0 provider endpoint. Returns embed metadata (title, author, provider, HTML iframe) for any published alloplexbio.com URL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oembed",
+                "1.0",
+                "embed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) The URL of the resource for which to fetch oEmbed data."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "The oEmbed format to use."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxwidth",
+                  "value": "600",
+                  "description": "The maximum width of the embed frame in pixels."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb0c9a15-b77f-4351-8189-d23ab184bf00",
+              "name": "An oEmbed response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oembed",
+                    "1.0",
+                    "embed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "maxwidth",
+                      "value": "600"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"type\": \"string\",\n  \"provider_name\": \"string\",\n  \"provider_url\": \"https://yWiEVrwafDaMw.uknyw9InyoDaqLXY2Vue-E0F2IjqZ3QaM2zS.Nwr,\",\n  \"author_name\": \"string\",\n  \"author_url\": \"http://RUTRCUv.xekRP8lgJqluTlwRL0L4sHkCtfaU3DobauXen9\",\n  \"title\": \"string\",\n  \"width\": 6799,\n  \"height\": null,\n  \"html\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21863c7f-7f54-42a3-b96e-5df7a4ec0a3e",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oembed",
+                    "1.0",
+                    "embed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "maxwidth",
+                      "value": "600"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 3467\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://alloplexbio.com/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "906fea1e-521b-43f3-b26b-a6eb1c662fb8",
+    "name": "Alloplex Biotherapeutics Content Oembed API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The read-only content surface Alloplex Biotherapeutics exposes at https://alloplexbio.com/wp-json. Alloplex Biotherapeutics is a clinical-stage cellular immunotherapy company developing SUPLEXA, a non-engineered autologous multi-cellular therapy produced by its ENLIST cell-retraining platform; it runs no developer program and markets no product API. This document is an API Evangelist derivation of the WordPress `wp/v2` and `oembed/1.0` route index the site publishes at /wp-json/, restricted to the operations that were verified to return data anonymously on 2026-08-06. Write operations, `/wp/v2/users`, `/wp/v2/settings`, `/wp/v2/menus`, `/wp/v2/menu-items`, `/wp/v2/templates`, `/wp/v2/block-types`, `/wp/v2/font-families`, `/wp/v2/plugins`, `/wp/v2/themes`, `/wp/v2/widgets`, `/wp/v2/sidebars`, revisions, autosaves, the `mcp` namespace, the `wp-abilities/v1` namespace, the `wordfence/v1` namespace, the `rankmath/v1` namespace, the `post-duplicator/v1` namespace, the `wpe_sign_on_plugin/v1` namespace, the `wpe/cache-plugin/v1` namespace, the `wp-site-health/v1` namespace and `wp-block-editor/v1` all require authentication and are deliberately excluded — see x-api-evangelist-provenance.\n\nContact Support:\n Name: Alloplex Biotherapeutics",
+      "type": "text/plain"
+    }
+  }
+}

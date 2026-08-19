@@ -1,0 +1,789 @@
+{
+  "item": [
+    {
+      "id": "adccc9de-e331-44d2-9576-f57f54ed9609",
+      "name": "posts",
+      "description": {
+        "content": "Press releases, scientific and clinical news, conference notes and opinion pieces (61 published at harvest time). Unlike many corporate WordPress deployments, content.rendered and excerpt.rendered are fully populated here.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bbf5ffaa-1309-4855-9044-5feb0afc3a86",
+          "name": "List posts",
+          "request": {
+            "name": "List posts",
+            "description": {
+              "content": "Lists published posts — 61 at harvest time, spanning FDA designations, clinical and scientific news, conference appearances, media coverage and opinion pieces. Total count and page count are returned in the X-WP-Total and X-WP-TotalPages headers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "posts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Current page of the collection."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Maximum number of items to be returned in result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Limit results to those matching a string."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts published after a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts published before a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_after",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts modified after a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_before",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts modified before a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes specific ids."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes specific ids."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<integer>",
+                  "description": "Limit result set to specific ids."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<integer>",
+                  "description": "Limit result set to specific ids."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset the result set by a specific number of items."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order sort attribute ascending or descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "Limit result set to items with one or more specific slugs."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "Limit result set to items with one or more specific slugs."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Limit the response to specific top-level fields. A WordPress-wide sparse-fieldset control — the single most effective way to reduce payload size on this API."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Limit the response to specific top-level fields. A WordPress-wide sparse-fieldset control — the single most effective way to reduce payload size on this API."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "date",
+                  "description": "Sort collection by post attribute."
+                },
+                {
+                  "disabled": false,
+                  "key": "author",
+                  "value": "<integer>",
+                  "description": "Limit result set to posts assigned to specific authors."
+                },
+                {
+                  "disabled": false,
+                  "key": "author",
+                  "value": "<integer>",
+                  "description": "Limit result set to posts assigned to specific authors."
+                },
+                {
+                  "disabled": false,
+                  "key": "author_exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes posts assigned to specific authors."
+                },
+                {
+                  "disabled": false,
+                  "key": "author_exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes posts assigned to specific authors."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<integer>",
+                  "description": "Limit result set to items with specific category terms."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories",
+                  "value": "<integer>",
+                  "description": "Limit result set to items with specific category terms."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories_exclude",
+                  "value": "<integer>",
+                  "description": "Limit result set to items except those with specific category terms."
+                },
+                {
+                  "disabled": false,
+                  "key": "categories_exclude",
+                  "value": "<integer>",
+                  "description": "Limit result set to items except those with specific category terms."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<integer>",
+                  "description": "Limit result set to items with specific tag terms. No effect on this deployment — the tags taxonomy is empty."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<integer>",
+                  "description": "Limit result set to items with specific tag terms. No effect on this deployment — the tags taxonomy is empty."
+                },
+                {
+                  "disabled": false,
+                  "key": "sticky",
+                  "value": "<boolean>",
+                  "description": "Limit result set to items that are sticky."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "publish",
+                  "description": "Limit result set to posts assigned one or more statuses. Anonymous callers may only request `publish`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8981618-4cb3-43b5-b164-2ff100d03912",
+              "name": "A list of posts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "categories_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "categories_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sticky",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "publish"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of posts matching the query.",
+                  "key": "X-WP-Total",
+                  "value": "176"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of result pages.",
+                  "key": "X-WP-TotalPages",
+                  "value": "568"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 105,\n    \"slug\": \"string\",\n    \"type\": \"string\",\n    \"link\": \"http://cFThrDywkBdqqKzshbTLmgkfDSsVSq.ybNm+gY05DAt177hyXn4N7NVOVeZRO,mf9LyjqQWrVr0b6jcxSffEcd\",\n    \"title\": {\n      \"rendered\": \"string\",\n      \"protected\": true\n    },\n    \"date\": \"2007-05-08T14:19:05.844Z\",\n    \"date_gmt\": \"1959-08-14T12:18:34.875Z\",\n    \"guid\": {\n      \"rendered\": \"string\",\n      \"protected\": true\n    },\n    \"modified\": \"1989-08-01T07:47:26.967Z\",\n    \"modified_gmt\": \"1989-04-19T05:46:28.654Z\",\n    \"status\": \"string\",\n    \"content\": {\n      \"rendered\": \"string\",\n      \"protected\": false\n    },\n    \"excerpt\": {\n      \"rendered\": \"string\",\n      \"protected\": true\n    },\n    \"author\": 767,\n    \"featured_media\": 8452,\n    \"comment_status\": \"closed\",\n    \"ping_status\": \"closed\",\n    \"sticky\": true,\n    \"template\": \"string\",\n    \"format\": \"string\",\n    \"meta\": {\n      \"key_0\": false,\n      \"key_1\": \"string\"\n    },\n    \"categories\": [\n      1028,\n      2806\n    ],\n    \"tags\": [\n      2606,\n      7060\n    ],\n    \"acf\": {},\n    \"class_list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"_links\": {\n      \"key_0\": [\n        {\n          \"href\": \"https://GpWxevsPxsPbgFYXsGXedTeCQFT.lkkJ..VfD.P1ScTZz6XfXV\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": false\n          }\n        },\n        {\n          \"href\": \"https://nAfctQdUzhbErAbAJNaBCJ.kirsf58jgoSfyvuGcdTd0ya7fxML\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 5257,\n            \"key_1\": true\n          }\n        }\n      ],\n      \"key_1\": [\n        {\n          \"href\": \"https://NEbtJcfVyqaZTHzWjjzzAkXbG.xgpAGAn9gUtjwsdQsn\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": true\n          }\n        },\n        {\n          \"href\": \"https://VJdFaXpxPOpuQODNpYKnW.avoDcjgycYhT4UU\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": true,\n            \"key_1\": 1094,\n            \"key_2\": \"string\"\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"id\": 1159,\n    \"slug\": \"string\",\n    \"type\": \"string\",\n    \"link\": \"http://xPVAHLVfqDsGSVOGTIyw.vzb4X7kCVEdrA,EAz2thbzWWc4zCLEJ6kKDil.TGmA7H3mR4gzraDJJTw3Ik9\",\n    \"title\": {\n      \"rendered\": \"string\",\n      \"protected\": false\n    },\n    \"date\": \"2001-10-10T14:23:35.085Z\",\n    \"date_gmt\": \"1947-10-26T10:37:41.992Z\",\n    \"guid\": {\n      \"rendered\": \"string\",\n      \"protected\": false\n    },\n    \"modified\": \"2005-11-08T09:02:36.375Z\",\n    \"modified_gmt\": \"1952-06-21T02:58:56.746Z\",\n    \"status\": \"string\",\n    \"content\": {\n      \"rendered\": \"string\",\n      \"protected\": true\n    },\n    \"excerpt\": {\n      \"rendered\": \"string\",\n      \"protected\": true\n    },\n    \"author\": 2124,\n    \"featured_media\": 2859,\n    \"comment_status\": \"closed\",\n    \"ping_status\": \"closed\",\n    \"sticky\": false,\n    \"template\": \"string\",\n    \"format\": \"string\",\n    \"meta\": {\n      \"key_0\": \"string\",\n      \"key_1\": 8299.04977918489,\n      \"key_2\": \"string\"\n    },\n    \"categories\": [\n      5390,\n      5451\n    ],\n    \"tags\": [\n      4453,\n      6222\n    ],\n    \"class_list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"_links\": {\n      \"key_0\": [\n        {\n          \"href\": \"http://WUwvhmfCELhrdQeOzp.rze,-2XFLIkyA7Fvobb.VBXmw4.\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": true\n          }\n        },\n        {\n          \"href\": \"http://ZCODMTfHfdeszFXmflSnhLAsewtgplM.vkfhRgm9,ZkP9aQ18\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\",\n            \"key_1\": 5281,\n            \"key_2\": 1755.4237605114565\n          }\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "832209c8-dc14-47e7-ad03-631ab54da632",
+              "name": "Invalid parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "posts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "categories",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "categories_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "categories_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sticky",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "publish"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 8502,\n    \"key_0\": 1886.146443152218,\n    \"key_1\": \"string\",\n    \"key_2\": 7396.5044614286335,\n    \"key_3\": 9743\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e938726b-f6ab-4182-8c82-ad82151b5b96",
+          "name": "Get a post",
+          "request": {
+            "name": "Get a post",
+            "description": {
+              "content": "Retrieves a single published post by numeric id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "posts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "The password for the post if it is password protected."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Limit the response to specific top-level fields. A WordPress-wide sparse-fieldset control — the single most effective way to reduce payload size on this API."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Limit the response to specific top-level fields. A WordPress-wide sparse-fieldset control — the single most effective way to reduce payload size on this API."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the post."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22e5f53d-6913-43c4-adab-73e54dc3479d",
+              "name": "A post",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "posts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the post."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4549,\n  \"slug\": \"string\",\n  \"type\": \"string\",\n  \"link\": \"http://jqKvBcMXrhNbnVhgkvR.bsnobMYJveNHtSzFMGpVRsp6LzWmu8GVWjJJfewu4d4.Yq0l\",\n  \"title\": {\n    \"rendered\": \"string\",\n    \"protected\": false\n  },\n  \"date\": \"2009-12-31T11:34:19.633Z\",\n  \"date_gmt\": null,\n  \"guid\": {\n    \"rendered\": \"string\",\n    \"protected\": false\n  },\n  \"modified\": \"2000-01-13T14:03:45.852Z\",\n  \"modified_gmt\": \"2005-09-14T13:09:27.619Z\",\n  \"status\": \"string\",\n  \"content\": {\n    \"rendered\": \"string\",\n    \"protected\": false\n  },\n  \"excerpt\": {\n    \"rendered\": \"string\",\n    \"protected\": false\n  },\n  \"author\": 1215,\n  \"featured_media\": 2207,\n  \"comment_status\": \"open\",\n  \"ping_status\": \"closed\",\n  \"sticky\": true,\n  \"template\": \"string\",\n  \"format\": \"string\",\n  \"meta\": {\n    \"key_0\": 5914.018403065264\n  },\n  \"categories\": [\n    8305,\n    2654\n  ],\n  \"tags\": [\n    3058,\n    6425\n  ],\n  \"class_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"_links\": {\n    \"key_0\": [\n      {\n        \"href\": \"https://cVvXei.rfhY+AXTCStICyv8MPwnsahNK-j\",\n        \"embeddable\": true,\n        \"name\": \"string\",\n        \"templated\": true,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": 7378,\n          \"key_1\": true\n        }\n      },\n      {\n        \"href\": \"http://ZGYittPyOzjL.wyawAA7YaTRdTmRO381FmiiYhb0Z7H7yGeKcSqwO\",\n        \"embeddable\": true,\n        \"name\": \"string\",\n        \"templated\": true,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": 6067\n        }\n      }\n    ],\n    \"key_1\": [\n      {\n        \"href\": \"http://IOAwiccCwzNVV.nmcc.kFg6YNDEsXmdxURcQlIrSLo3GPBDYfRm8If++2dG3a2rozkKQ6sbMYuRzaTfzDrAxOfv\",\n        \"embeddable\": true,\n        \"name\": \"string\",\n        \"templated\": false,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": 1224.0252022213538\n        }\n      },\n      {\n        \"href\": \"https://SBlQRYCA.hmwf43f8ctPE6ONzuLchV55qrIxFShPmLjzLI6G\",\n        \"embeddable\": false,\n        \"name\": \"string\",\n        \"templated\": true,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": 5009.680361778508,\n          \"key_1\": false\n        }\n      }\n    ],\n    \"key_2\": [\n      {\n        \"href\": \"http://jfjeFkZCusRLuMnLXWQziEzMYlDJmzN.itiuE\",\n        \"embeddable\": true,\n        \"name\": \"string\",\n        \"templated\": true,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": true,\n          \"key_1\": \"string\"\n        }\n      },\n      {\n        \"href\": \"http://RrEWBFhbjHFfzJmsqxQHnSZK.grpQUdWZzbvmtpmhFeAU.RHbhxXKhHucGjpOgicfKbv2TO09S9vGF8sk.8FlTZ\",\n        \"embeddable\": false,\n        \"name\": \"string\",\n        \"templated\": false,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": true\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c3510e2-e36b-46bb-91f9-9b30252e5016",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "posts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the post."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 8502,\n    \"key_0\": 1886.146443152218,\n    \"key_1\": \"string\",\n    \"key_2\": 7396.5044614286335,\n    \"key_3\": 9743\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://alloplexbio.com/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dd4c8550-51cd-4209-ba10-1d0259682b44",
+    "name": "Alloplex Biotherapeutics Content Posts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The read-only content surface Alloplex Biotherapeutics exposes at https://alloplexbio.com/wp-json. Alloplex Biotherapeutics is a clinical-stage cellular immunotherapy company developing SUPLEXA, a non-engineered autologous multi-cellular therapy produced by its ENLIST cell-retraining platform; it runs no developer program and markets no product API. This document is an API Evangelist derivation of the WordPress `wp/v2` and `oembed/1.0` route index the site publishes at /wp-json/, restricted to the operations that were verified to return data anonymously on 2026-08-06. Write operations, `/wp/v2/users`, `/wp/v2/settings`, `/wp/v2/menus`, `/wp/v2/menu-items`, `/wp/v2/templates`, `/wp/v2/block-types`, `/wp/v2/font-families`, `/wp/v2/plugins`, `/wp/v2/themes`, `/wp/v2/widgets`, `/wp/v2/sidebars`, revisions, autosaves, the `mcp` namespace, the `wp-abilities/v1` namespace, the `wordfence/v1` namespace, the `rankmath/v1` namespace, the `post-duplicator/v1` namespace, the `wpe_sign_on_plugin/v1` namespace, the `wpe/cache-plugin/v1` namespace, the `wp-site-health/v1` namespace and `wp-block-editor/v1` all require authentication and are deliberately excluded — see x-api-evangelist-provenance.\n\nContact Support:\n Name: Alloplex Biotherapeutics",
+      "type": "text/plain"
+    }
+  }
+}

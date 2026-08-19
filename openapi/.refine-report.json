@@ -1,0 +1,35 @@
+{
+  "provider": "alloplex-biotherapeutics",
+  "sources": [
+    "alloplex-biotherapeutics-discovery-api-openapi.yml",
+    "alloplex-biotherapeutics-media-api-openapi.yml",
+    "alloplex-biotherapeutics-oembed-api-openapi.yml",
+    "alloplex-biotherapeutics-pages-api-openapi.yml",
+    "alloplex-biotherapeutics-posts-api-openapi.yml",
+    "alloplex-biotherapeutics-search-api-openapi.yml",
+    "alloplex-biotherapeutics-taxonomy-api-openapi.yml"
+  ],
+  "outputs": [
+    "alloplex-biotherapeutics-discovery-api-openapi.yml",
+    "alloplex-biotherapeutics-media-api-openapi.yml",
+    "alloplex-biotherapeutics-oembed-api-openapi.yml",
+    "alloplex-biotherapeutics-pages-api-openapi.yml",
+    "alloplex-biotherapeutics-posts-api-openapi.yml",
+    "alloplex-biotherapeutics-search-api-openapi.yml",
+    "alloplex-biotherapeutics-taxonomy-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "alloplex-biotherapeutics-discovery-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "alloplex-biotherapeutics-media-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "alloplex-biotherapeutics-oembed-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "alloplex-biotherapeutics-pages-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "alloplex-biotherapeutics-posts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "alloplex-biotherapeutics-search-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "alloplex-biotherapeutics-taxonomy-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

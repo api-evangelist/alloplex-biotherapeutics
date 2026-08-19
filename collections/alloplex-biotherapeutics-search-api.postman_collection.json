@@ -1,0 +1,180 @@
+{
+  "item": [
+    {
+      "id": "ea4e7614-2eac-41eb-b3be-91536d243d2f",
+      "name": "search",
+      "description": {
+        "content": "Cross-content search across published posts and pages.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f9ae3718-e6fc-4c11-8554-7ed7a2e0be19",
+          "name": "Search across content",
+          "request": {
+            "name": "Search across content",
+            "description": {
+              "content": "Cross-content search returning lightweight result objects (id, title, url, type, subtype) with _links to the full object. The most efficient way to locate an Alloplex press release or corporate page by keyword.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Current page of the collection."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Maximum number of items to be returned in result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Limit results to those matching a string."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "post",
+                  "description": "Limit results to items of an object type."
+                },
+                {
+                  "disabled": false,
+                  "key": "subtype",
+                  "value": "any",
+                  "description": "Limit results to items of one or more object subtypes."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5b1b1e3-8d43-4458-bfc8-8f8899829b65",
+              "name": "A list of search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "post"
+                    },
+                    {
+                      "key": "subtype",
+                      "value": "any"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of results matching the query.",
+                  "key": "X-WP-Total",
+                  "value": "1094"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of result pages.",
+                  "key": "X-WP-TotalPages",
+                  "value": "1094"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2438,\n    \"title\": \"string\",\n    \"url\": \"https://SkPOpeCKVfidYigJTPXZGtl.usU,HsyiW5SG5\",\n    \"type\": \"string\",\n    \"subtype\": \"string\",\n    \"_links\": {\n      \"key_0\": [\n        {\n          \"href\": \"http://vWjrMaOCUtxy.dsvpxicxDY2YWA-yWeTHNBM0Kdn1INhldoFKAWFpOX\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": true,\n            \"key_1\": 483.1125327781771\n          }\n        },\n        {\n          \"href\": \"http://qyxtwJXdMnn.hfyoKXFjrUG+Tml2t4pXEqKvimAd56.PrTSjgyoVb\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 8269.655308340964\n          }\n        }\n      ]\n    }\n  },\n  {\n    \"id\": 6409,\n    \"title\": \"string\",\n    \"url\": \"https://NAQVjE.dpNAxpx9kDCgz,hhPGEn1RWzW82EifBb,b9K\",\n    \"type\": \"string\",\n    \"subtype\": \"string\",\n    \"_links\": {\n      \"key_0\": [\n        {\n          \"href\": \"http://gBYnxHtCgZWfINZzOkZfBgNhQEZNDAB.bdsvuAsVZCMInHJJKvA6c0TBU7oPkqSFaTD1J+tnwXjiudU\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 5155\n          }\n        },\n        {\n          \"href\": \"http://DELfOWfpnGVwlkfg.ooohWGRtSJIw8-wamVfBSZvIF3AOcJArsYDqQU8uHpwD,CvUHRIXTdz+t,77ygzoL+.qqrF.RFd\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": false\n          }\n        }\n      ],\n      \"key_1\": [\n        {\n          \"href\": \"http://xhdAdVPFBc.xnNT9ZoR68EKHDwVaFst.ceDt4\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 1294,\n            \"key_1\": 8193.240640394572,\n            \"key_2\": 1315\n          }\n        },\n        {\n          \"href\": \"http://YQbdMolUcavMPmUzakAlVTG.ihlGVDPr8fCIdJdyVdZMBa\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": false,\n            \"key_1\": \"string\"\n          }\n        }\n      ],\n      \"key_2\": [\n        {\n          \"href\": \"http://GeRzu.xmismtNd3B9hQOaYjp6fsObDO0Pk4XQYEnOgKIYYlNBJlC.AzpYF,Uk\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 768,\n            \"key_1\": 3688,\n            \"key_2\": \"string\"\n          }\n        },\n        {\n          \"href\": \"http://kaFTWTirSBEaQEfY.wdab2-PsR+PAi,oXo+N,lx1D1LIa4mrPcXgC,XhmpmVMVmU7Bkxg-49Ajar+IheB3\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\"\n          }\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://alloplexbio.com/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9016dbc2-c1d2-4273-93fa-d84ff138213a",
+    "name": "Alloplex Biotherapeutics Content Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The read-only content surface Alloplex Biotherapeutics exposes at https://alloplexbio.com/wp-json. Alloplex Biotherapeutics is a clinical-stage cellular immunotherapy company developing SUPLEXA, a non-engineered autologous multi-cellular therapy produced by its ENLIST cell-retraining platform; it runs no developer program and markets no product API. This document is an API Evangelist derivation of the WordPress `wp/v2` and `oembed/1.0` route index the site publishes at /wp-json/, restricted to the operations that were verified to return data anonymously on 2026-08-06. Write operations, `/wp/v2/users`, `/wp/v2/settings`, `/wp/v2/menus`, `/wp/v2/menu-items`, `/wp/v2/templates`, `/wp/v2/block-types`, `/wp/v2/font-families`, `/wp/v2/plugins`, `/wp/v2/themes`, `/wp/v2/widgets`, `/wp/v2/sidebars`, revisions, autosaves, the `mcp` namespace, the `wp-abilities/v1` namespace, the `wordfence/v1` namespace, the `rankmath/v1` namespace, the `post-duplicator/v1` namespace, the `wpe_sign_on_plugin/v1` namespace, the `wpe/cache-plugin/v1` namespace, the `wp-site-health/v1` namespace and `wp-block-editor/v1` all require authentication and are deliberately excluded — see x-api-evangelist-provenance.\n\nContact Support:\n Name: Alloplex Biotherapeutics",
+      "type": "text/plain"
+    }
+  }
+}

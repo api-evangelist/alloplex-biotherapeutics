@@ -1,0 +1,941 @@
+{
+  "item": [
+    {
+      "id": "c049d8db-218c-4769-b69a-cf41b607754f",
+      "name": "discovery",
+      "description": {
+        "content": "Route, type, taxonomy and status discovery documents.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3fec554c-e171-4dc6-9e0c-a811b1b38673",
+          "name": "Get the REST API index",
+          "request": {
+            "name": "Get the REST API index",
+            "description": {
+              "content": "Returns the site index — name, description, URL, home, timezone, the registered namespaces, the authentication methods offered, and the full route table (219 routes on this deployment).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+                },
+                {
+                  "disabled": false,
+                  "key": "namespace",
+                  "value": "<string>",
+                  "description": "Restrict the response to a single namespace."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23e518c0-ac2f-4173-a4f7-c66ea8184858",
+              "name": "Site index",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "namespace",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"url\": \"http://Z.pnrco-HyTUoUBW3,4pqqEzHTGWTw+kU\",\n  \"home\": \"http://qfqJMZhRtsOMDTowOHfSJlEugDmyDoPf.ostLam1KZ4CgWPTG4,ZQzk1cZ7Lw0N8becAw.YU,hv+1do54SQoYc\",\n  \"gmt_offset\": \"string\",\n  \"timezone_string\": \"string\",\n  \"namespaces\": [\n    \"string\",\n    \"string\"\n  ],\n  \"authentication\": {},\n  \"routes\": {\n    \"key_0\": 3968,\n    \"key_1\": 5504.984545993662,\n    \"key_2\": 2479\n  },\n  \"_links\": {\n    \"key_0\": [\n      {\n        \"href\": \"http://EtEcWRSyOGTWcmIxGPKINURHiTsqj.bsor,Tse4gOPdIppeeG+E+i+XvL\",\n        \"embeddable\": false,\n        \"name\": \"string\",\n        \"templated\": true,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": false,\n          \"key_1\": true,\n          \"key_2\": 3441,\n          \"key_3\": \"string\"\n        }\n      },\n      {\n        \"href\": \"https://gjZYkHva.admTaecpdVbKFXO1AT-Z.PGgOVAVKobAnpYXX6h+XYSf,7i\",\n        \"embeddable\": true,\n        \"name\": \"string\",\n        \"templated\": false,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": true\n        }\n      }\n    ],\n    \"key_1\": [\n      {\n        \"href\": \"http://sXAElBETglmYkAzap.pnPPwCK9TadHZTAR+AtbP.-zKmlqwSWiiHeUa+XM.84b9aX6etTPsaiJOU4RVa4Ny-Ptf2\",\n        \"embeddable\": true,\n        \"name\": \"string\",\n        \"templated\": false,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": true\n        }\n      },\n      {\n        \"href\": \"https://JeMNhYFZxpWubtonFYEYjWwc.jhDGB0U+cgy8N0M-JhNJhYt7FM-y,ajVbSOgXSRVMtXqb-\",\n        \"embeddable\": false,\n        \"name\": \"string\",\n        \"templated\": false,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": true,\n          \"key_1\": 8631.71463387921,\n          \"key_2\": 9731.538361801306\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09df5ae0-b60e-4d60-bdd9-34eb2e0c64f5",
+          "name": "Get the wp/v2 namespace index",
+          "request": {
+            "name": "Get the wp/v2 namespace index",
+            "description": {
+              "content": "Returns the route table for the WordPress core `wp/v2` namespace only.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d760ee3-3ce0-4058-b2a0-c3db4939d281",
+              "name": "Namespace index",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"url\": \"https://mFtlFyK.dhvjiW6sjevgk+Safmdo8LU+fMRLibW7ZL+tBJ2h\",\n  \"home\": \"http://AcnbXNSjBkVHGmJuPMQXBHZkgtSdRbuI.xmafQEUjkmMlEfXwScW34Ljq7kYS,vyCGMwlGuDBpImTaFaF5gZA79Ss7\",\n  \"gmt_offset\": 9960.829149774101,\n  \"timezone_string\": \"string\",\n  \"namespaces\": [\n    \"string\",\n    \"string\"\n  ],\n  \"authentication\": {},\n  \"routes\": {\n    \"key_0\": 2911.8349839954426\n  },\n  \"_links\": {\n    \"key_0\": [\n      {\n        \"href\": \"https://UiNoGTYqrelprLvlVG.yzbwWwIzQA5Zg2FWcHtvjFWdEIDYQlvdjgZY2\",\n        \"embeddable\": false,\n        \"name\": \"string\",\n        \"templated\": false,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": false,\n          \"key_1\": 255.4791891266417\n        }\n      },\n      {\n        \"href\": \"http://UBQTecpFjVKj.howCbh,KftxP1R,07Wz1Boge+B9B5a6ONeb+YPQD64,KOP\",\n        \"embeddable\": false,\n        \"name\": \"string\",\n        \"templated\": true,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": true\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64e24b02-b12b-44b9-a66e-9f3e9fd13472",
+          "name": "List post types",
+          "request": {
+            "name": "List post types",
+            "description": {
+              "content": "Lists the registered post types visible to the REST API — 12 on this deployment. Note that the four custom post types the site's sitemaps expose (publication, team_member, conference, resource) are NOT REST-registered and do not appear here.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c344a7f5-7dea-4715-95e7-1f736c467106",
+              "name": "A map of post types keyed by type slug",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"rest_base\": \"string\",\n    \"capabilities\": {\n      \"key_0\": 6114,\n      \"key_1\": 7279.868829273568,\n      \"key_2\": \"string\"\n    },\n    \"description\": \"string\",\n    \"hierarchical\": false,\n    \"viewable\": true,\n    \"icon\": \"string\",\n    \"taxonomies\": [\n      \"string\",\n      \"string\"\n    ],\n    \"rest_namespace\": \"string\",\n    \"supports\": {\n      \"key_0\": false\n    },\n    \"_links\": {\n      \"key_0\": [\n        {\n          \"href\": \"http://BnXUHNzjrRzTurprPuXkrdtQsjNgzMCO.czzzTUdi,4\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 9806.558598678497,\n            \"key_1\": \"string\"\n          }\n        },\n        {\n          \"href\": \"http://zrDpijCkRPg.wrly\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": true,\n            \"key_1\": true,\n            \"key_2\": 319,\n            \"key_3\": \"string\"\n          }\n        }\n      ],\n      \"key_1\": [\n        {\n          \"href\": \"https://fCLj.vjruSDArk4ZyBd5yGdISChsqeNhvLTB-V18y9PbyIBDpqR-TE\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": false\n          }\n        },\n        {\n          \"href\": \"http://EmjPPtNSpSejtLjGQMvrYpYhObSP.kihQwruFgIdgNzM5HNiGHAqrFren7+xCU9j1S-pn-YNGoHW,oxGihGk\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\",\n            \"key_1\": false\n          }\n        }\n      ]\n    }\n  },\n  \"key_1\": {\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"rest_base\": \"string\",\n    \"capabilities\": {\n      \"key_0\": 1976.59487278535,\n      \"key_1\": 5766\n    },\n    \"description\": \"string\",\n    \"hierarchical\": false,\n    \"viewable\": false,\n    \"icon\": \"string\",\n    \"taxonomies\": [\n      \"string\",\n      \"string\"\n    ],\n    \"rest_namespace\": \"string\",\n    \"supports\": {\n      \"key_0\": 7191,\n      \"key_1\": \"string\",\n      \"key_2\": true\n    },\n    \"_links\": {\n      \"key_0\": [\n        {\n          \"href\": \"http://c.himeztF4EEWAwTy+5eRn2U8kDfLgafvdXlyMIyJX4pn0k1M\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": true,\n            \"key_1\": 5488\n          }\n        },\n        {\n          \"href\": \"http://Ek.nydzHJPvJtCiX-GT3b,T\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\",\n            \"key_1\": 3927\n          }\n        }\n      ],\n      \"key_1\": [\n        {\n          \"href\": \"http://SyzDAVWGCRE.kijwraYYdlxQ\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 4103,\n            \"key_1\": 9034\n          }\n        },\n        {\n          \"href\": \"http://Z.flm01GZw5trWw2KtIn-\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": true,\n            \"key_1\": true\n          }\n        }\n      ],\n      \"key_2\": [\n        {\n          \"href\": \"http://VXxPeIxAdBKAybEbQLgbggDpjkmaDKx.awjvZmCNL6X9kReeHpm4Xgb,AlG3,OCrzRhnz3yNeYWiaSO\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\",\n            \"key_1\": 2723,\n            \"key_2\": \"string\"\n          }\n        },\n        {\n          \"href\": \"http://gBCuGoblOFrymVzPFSufvHp.tklU8SWaG7yU\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\",\n            \"key_1\": 5913\n          }\n        }\n      ],\n      \"key_3\": [\n        {\n          \"href\": \"http://wmqtXpeDVADvzReInJt.ypuH.JNFfYwyQ.ucE5Zte3MC4g1A4hN.0EBHAfVjwlZ\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 8891\n          }\n        },\n        {\n          \"href\": \"https://wtObFuwdOUNUB.jfhtYzXsulCcDkcJIsfq8CwWZ.hT\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 2868.3472866252623,\n            \"key_1\": 6816,\n            \"key_2\": 3235.1459776673764,\n            \"key_3\": 3063.8848860808\n          }\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94beee12-bb47-4eb9-ab53-8ff5879f14b7",
+          "name": "Get a post type",
+          "request": {
+            "name": "Get a post type",
+            "description": {
+              "content": "Retrieves a single registered post type by slug.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "types",
+                ":type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) An alphanumeric identifier for the post type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36c256d3-9853-45bb-9bf4-5425de352ca8",
+              "name": "A post type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "types",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) An alphanumeric identifier for the post type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"rest_base\": \"string\",\n  \"capabilities\": {\n    \"key_0\": true\n  },\n  \"description\": \"string\",\n  \"hierarchical\": true,\n  \"viewable\": true,\n  \"icon\": null,\n  \"taxonomies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"rest_namespace\": \"string\",\n  \"supports\": {\n    \"key_0\": true,\n    \"key_1\": 5869,\n    \"key_2\": 8125\n  },\n  \"_links\": {\n    \"key_0\": [\n      {\n        \"href\": \"https://mONaXNMUCrcMbsHynVegTU.qhzm.XfUEBuBjtItt3qAkwFAKZ3X.s\",\n        \"embeddable\": true,\n        \"name\": \"string\",\n        \"templated\": false,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": 6883\n        }\n      },\n      {\n        \"href\": \"http://sdSFXBiIwKqM.hydgh.AqvnrDJeH1-n8PpOarQBpZwP\",\n        \"embeddable\": false,\n        \"name\": \"string\",\n        \"templated\": false,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": 8926\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50b2dd20-f15b-4556-a5b8-fa370130eb59",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "types",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) An alphanumeric identifier for the post type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 7304\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e16af92e-5e83-41af-97d0-84ecc5be89de",
+          "name": "List taxonomies",
+          "request": {
+            "name": "List taxonomies",
+            "description": {
+              "content": "Lists the registered taxonomies — category, post_tag, nav_menu and wp_pattern_category on this deployment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "taxonomies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Limit results to taxonomies associated with a specific post type."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aac514d2-fc72-46c3-8e3f-d27e4279a719",
+              "name": "A map of taxonomies keyed by taxonomy slug",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "taxonomies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"rest_base\": \"string\",\n    \"description\": \"string\",\n    \"hierarchical\": true,\n    \"types\": [\n      \"string\",\n      \"string\"\n    ],\n    \"rest_namespace\": \"string\",\n    \"visibility\": {\n      \"key_0\": 7454.5149208691\n    },\n    \"_links\": {\n      \"key_0\": [\n        {\n          \"href\": \"http://oozMhOawxDVZ.kasjlv678gNSKGMnMC4jgO\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": false,\n            \"key_1\": 4034\n          }\n        },\n        {\n          \"href\": \"http://LgVwawMsZMfUj.khwuXO1APykaonk7lqRxOKU6JUMpLwR+MHcKyXmYHcbjyXzyr5\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        }\n      ],\n      \"key_1\": [\n        {\n          \"href\": \"https://IrCrOzKwLzouMvBcON.wgrrpVihJfu.1lT7SM+Ox7omrezfzs67MoUl3Q6-sfs5dxpR3ba7aiFX\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": false,\n            \"key_1\": \"string\"\n          }\n        },\n        {\n          \"href\": \"https://QjJGvTiaqBQzoveu.rpch1nkjGiEb.PrkilqTl5uSaVw1Yttec+gsGy-J2hpywlGXQ\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 4260,\n            \"key_1\": 7386\n          }\n        }\n      ],\n      \"key_2\": [\n        {\n          \"href\": \"http://bvsNdWPELbqnoTNZVpxAZrvUGF.teS+ta2BEVhsqyJICXZqAA3Ru4ow6KE0m.MQxivTl4LT0\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 740.3236956553205,\n            \"key_1\": \"string\"\n          }\n        },\n        {\n          \"href\": \"https://offkDTWQWGuStApbzVuqclwEGpHijLKcc.gqR.LLBOtE1RMGjnLNRrBnzAfjM4D2bII+mvTnK.-gPzQkEDKhJqU4VpY7V5f83LIrBl\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\"\n          }\n        }\n      ],\n      \"key_3\": [\n        {\n          \"href\": \"https://knDLvuKuqQSQJyjEOQjsIIRomIICDCI.kaFzy2j1+mY5HBbxGG6ae-FmJla-riauU\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 1970.024224504482\n          }\n        },\n        {\n          \"href\": \"http://gt.nlyJxONONcDv2\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\",\n            \"key_1\": 5596.129399159314\n          }\n        }\n      ],\n      \"key_4\": [\n        {\n          \"href\": \"http://rfKVkTSmIeNEMFqtkUVtmAHnKxoLA.omlXDW6262neLZHSTwDx9s\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": true,\n            \"key_1\": 895.2339612924865,\n            \"key_2\": true,\n            \"key_3\": 2349.8756857083213\n          }\n        },\n        {\n          \"href\": \"http://vk.zkIBcISOct2VQbi\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\",\n            \"key_1\": 6132.789707949062,\n            \"key_2\": false\n          }\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b22bc065-8879-4ee4-86e0-3b745137ee3f",
+          "name": "Get a taxonomy",
+          "request": {
+            "name": "Get a taxonomy",
+            "description": {
+              "content": "Retrieves a single registered taxonomy by slug.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "taxonomies",
+                ":taxonomy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taxonomy",
+                  "description": "(Required) An alphanumeric identifier for the taxonomy."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9438d56-f9bd-407f-8e4a-14b878431aea",
+              "name": "A taxonomy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "taxonomies",
+                    ":taxonomy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taxonomy",
+                      "description": "(Required) An alphanumeric identifier for the taxonomy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"rest_base\": \"string\",\n  \"description\": \"string\",\n  \"hierarchical\": false,\n  \"types\": [\n    \"string\",\n    \"string\"\n  ],\n  \"rest_namespace\": \"string\",\n  \"visibility\": {\n    \"key_0\": true,\n    \"key_1\": 6970.570630743161\n  },\n  \"_links\": {\n    \"key_0\": [\n      {\n        \"href\": \"https://OeUdxPDzcAxYQVlqgcPKVfeRPx.yjqjxKsdYd4I18PqucFfT2muDVj\",\n        \"embeddable\": false,\n        \"name\": \"string\",\n        \"templated\": false,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": 3504\n        }\n      },\n      {\n        \"href\": \"http://U.duiivjAhyUVXocEMA\",\n        \"embeddable\": false,\n        \"name\": \"string\",\n        \"templated\": true,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": 5087.761587169425,\n          \"key_1\": 278\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1343ee8a-9213-4e97-98e9-71a0fa4113f7",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "taxonomies",
+                    ":taxonomy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taxonomy",
+                      "description": "(Required) An alphanumeric identifier for the taxonomy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 7304\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "959bdcf2-177a-40bb-bdf5-aaaee462f0c3",
+          "name": "List post statuses",
+          "request": {
+            "name": "List post statuses",
+            "description": {
+              "content": "Lists the post statuses visible to the caller. Anonymously this returns `publish` and `acf-disabled` on this deployment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "statuses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d82a0e54-6d2a-4fca-a8ea-ceeb2676040c",
+              "name": "A map of statuses keyed by status slug",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"public\": false,\n    \"queryable\": false,\n    \"date_floating\": true,\n    \"_links\": {\n      \"key_0\": [\n        {\n          \"href\": \"https://RhhOQCwZKwbSEEkZIIOy.dbm+ZIn7ktYRo.f5n.MAWqELpHcwFMc\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": 971\n          }\n        },\n        {\n          \"href\": \"http://IZREIo.bbkPB5i-p86DYpvh.8XfG2GygxpsYleS+7XLSBhmepXkl6PbemPXYWZZE45RRnVWW\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 6532.389886089368,\n            \"key_1\": 7435.1487664260285,\n            \"key_2\": 3838.0643610371812\n          }\n        }\n      ]\n    }\n  },\n  \"key_1\": {\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"public\": false,\n    \"queryable\": false,\n    \"date_floating\": true,\n    \"_links\": {\n      \"key_0\": [\n        {\n          \"href\": \"http://AmQKTXGPLuAYnKLYrdNmbFvZqlCLb.hxsMV9drF0,jmQnAt+Yx,voGco+BWuhQLqfWn7mE5Gt1\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 863.7538197244443\n          }\n        },\n        {\n          \"href\": \"http://yPMnSxjStIFesTrIPLzNXMoJgRNBm.nfuZwHBVIMsp43lHoEWjzhdZut9PDMk+S.ZxKu4J.qAGMOOh\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": 4544\n          }\n        }\n      ],\n      \"key_1\": [\n        {\n          \"href\": \"http://RtygYTCis.pbQV9VNO8KeYh+1cf6mPw0,fWO8Zk\",\n          \"embeddable\": true,\n          \"name\": \"string\",\n          \"templated\": true,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\",\n            \"key_1\": 1467\n          }\n        },\n        {\n          \"href\": \"https://nAktuLVDEPRTIR.serQ-HbrxCv-BGaSWU6PN1DBk4swRFkzXtb7Z3MkUQ-F8SZlGR,fnelY\",\n          \"embeddable\": false,\n          \"name\": \"string\",\n          \"templated\": false,\n          \"taxonomy\": \"string\",\n          \"targetHints\": {\n            \"key_0\": \"string\",\n            \"key_1\": 5777.329862899089,\n            \"key_2\": false,\n            \"key_3\": false\n          }\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37c6daa3-3559-4c04-892b-5072089e5d4d",
+          "name": "Get a post status",
+          "request": {
+            "name": "Get a post status",
+            "description": {
+              "content": "Retrieves a single post status by slug.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "statuses",
+                ":status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "status",
+                  "description": "(Required) An alphanumeric identifier for the status."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3f2abee-bde2-4bef-8b8d-20a5d3c9e7ce",
+              "name": "A post status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "statuses",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) An alphanumeric identifier for the status."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"public\": true,\n  \"queryable\": true,\n  \"date_floating\": true,\n  \"_links\": {\n    \"key_0\": [\n      {\n        \"href\": \"http://KsVVIHH.zmuoh4n5femTkTgIIHZx8Tm2U7wSv4GlFbjVuNLTfWcLMhb.MBctggQP9FrjyUFLykmUTV+qybR\",\n        \"embeddable\": false,\n        \"name\": \"string\",\n        \"templated\": false,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": 9297,\n          \"key_1\": false\n        }\n      },\n      {\n        \"href\": \"https://QwSdmmFVHKzbOBFVWKHIS.qwhobQVmJS0IXnntmub+Vxq1aPQQpzuh8DpMsyO\",\n        \"embeddable\": true,\n        \"name\": \"string\",\n        \"templated\": true,\n        \"taxonomy\": \"string\",\n        \"targetHints\": {\n          \"key_0\": 5758\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f96a105-5404-4892-a5d5-9e15b40202e1",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "statuses",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) An alphanumeric identifier for the status."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 7304\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://alloplexbio.com/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9fd4d6e9-9503-424f-a03a-3da491ee2f1e",
+    "name": "Alloplex Biotherapeutics Content Discovery API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The read-only content surface Alloplex Biotherapeutics exposes at https://alloplexbio.com/wp-json. Alloplex Biotherapeutics is a clinical-stage cellular immunotherapy company developing SUPLEXA, a non-engineered autologous multi-cellular therapy produced by its ENLIST cell-retraining platform; it runs no developer program and markets no product API. This document is an API Evangelist derivation of the WordPress `wp/v2` and `oembed/1.0` route index the site publishes at /wp-json/, restricted to the operations that were verified to return data anonymously on 2026-08-06. Write operations, `/wp/v2/users`, `/wp/v2/settings`, `/wp/v2/menus`, `/wp/v2/menu-items`, `/wp/v2/templates`, `/wp/v2/block-types`, `/wp/v2/font-families`, `/wp/v2/plugins`, `/wp/v2/themes`, `/wp/v2/widgets`, `/wp/v2/sidebars`, revisions, autosaves, the `mcp` namespace, the `wp-abilities/v1` namespace, the `wordfence/v1` namespace, the `rankmath/v1` namespace, the `post-duplicator/v1` namespace, the `wpe_sign_on_plugin/v1` namespace, the `wpe/cache-plugin/v1` namespace, the `wp-site-health/v1` namespace and `wp-block-editor/v1` all require authentication and are deliberately excluded — see x-api-evangelist-provenance.\n\nContact Support:\n Name: Alloplex Biotherapeutics",
+      "type": "text/plain"
+    }
+  }
+}
