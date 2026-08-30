@@ -39,14 +39,14 @@ created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
-- Biotechnology
-- Cell Therapy
-- Immunotherapy
-- Oncology
-- Cancer
-- Clinical Trials
-- Life Sciences
-- Drug Development
+- biotechnology
+- cell-therapy
+- immunotherapy
+- oncology
+- cancer
+- clinical-trials
+- life-sciences
+- drug-development
 - autoimmunity
 - content-api
 tags_raw:
