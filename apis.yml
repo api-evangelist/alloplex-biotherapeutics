@@ -120,28 +120,6 @@ apis:
     url: data-model/alloplex-biotherapeutics-data-model.yml
   - type: JSONLD
     url: json-ld/alloplex-biotherapeutics-json-ld.yml
-- aid: alloplex-biotherapeutics:alloplex-biotherapeutics-oembed-api
-  name: Alloplex Biotherapeutics Oembed API
-  description: oEmbed 1.0 provider endpoint for alloplexbio.com URLs.
-  humanURL: https://developer.wordpress.org/rest-api/
-  baseURL: https://alloplexbio.com/wp-json
-  tags:
-  - oEmbed
-  tags_raw:
-  - oembed
-  properties:
-  - type: OpenAPI
-    url: openapi/alloplex-biotherapeutics-oembed-api-openapi.yml
-  - type: Authentication
-    url: authentication/alloplex-biotherapeutics-authentication.yml
-  - type: ErrorCatalog
-    url: errors/alloplex-biotherapeutics-problem-types.yml
-  - type: Conventions
-    url: conventions/alloplex-biotherapeutics-conventions.yml
-  - type: DataModel
-    url: data-model/alloplex-biotherapeutics-data-model.yml
-  - type: JSONLD
-    url: json-ld/alloplex-biotherapeutics-json-ld.yml
 - aid: alloplex-biotherapeutics:alloplex-biotherapeutics-pages-api
   name: Alloplex Biotherapeutics Pages API
   description: >-
@@ -229,6 +207,26 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/alloplex-biotherapeutics-taxonomy-api-openapi.yml
+  - type: Authentication
+    url: authentication/alloplex-biotherapeutics-authentication.yml
+  - type: ErrorCatalog
+    url: errors/alloplex-biotherapeutics-problem-types.yml
+  - type: Conventions
+    url: conventions/alloplex-biotherapeutics-conventions.yml
+  - type: DataModel
+    url: data-model/alloplex-biotherapeutics-data-model.yml
+  - type: JSONLD
+    url: json-ld/alloplex-biotherapeutics-json-ld.yml
+- aid: alloplex-biotherapeutics:alloplex-biotherapeutics-o-embed-api
+  name: Alloplex Biotherapeutics o Embed API
+  description: oEmbed 1.0 provider endpoint for alloplexbio.com URLs.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://alloplexbio.com/wp-json
+  tags:
+  - o Embed
+  properties:
+  - type: OpenAPI
+    url: openapi/alloplex-biotherapeutics-o-embed-api-openapi.yml
   - type: Authentication
     url: authentication/alloplex-biotherapeutics-authentication.yml
   - type: ErrorCatalog
