@@ -3,7 +3,7 @@ info:
   title: Alloplex Biotherapeutics Content Search API
   version: wp/v2
   summary: Anonymously readable WordPress REST content API behind alloplexbio.com.
-  description: The read-only content surface Alloplex Biotherapeutics exposes at https://alloplexbio.com/wp-json. Alloplex Biotherapeutics is a clinical-stage cellular immunotherapy company developing SUPLEXA, a non-engineered autologous multi-cellular therapy produced by its ENLIST cell-retraining platform; it runs no developer program and markets no product API. This document is an API Evangelist derivation of the WordPress `wp/v2` and `oembed/1.0` route index the site publishes at /wp-json/, restricted to the operations that were verified to return data anonymously on 2026-08-06. Write operations, `/wp/v2/users`, `/wp/v2/settings`, `/wp/v2/menus`, `/wp/v2/menu-items`, `/wp/v2/templates`, `/wp/v2/block-types`, `/wp/v2/font-families`, `/wp/v2/plugins`, `/wp/v2/themes`, `/wp/v2/widgets`, `/wp/v2/sidebars`, revisions, autosaves, the `mcp` namespace, the `wp-abilities/v1` namespace, the `wordfence/v1` namespace, the `rankmath/v1` namespace, the `post-duplicator/v1` namespace, the `wpe_sign_on_plugin/v1` namespace, the `wpe/cache-plugin/v1` namespace, the `wp-site-health/v1` namespace and `wp-block-editor/v1` all require authentication and are deliberately excluded — see x-api-evangelist-provenance.
+  description: The read-only content surface Alloplex Biotherapeutics exposes at https://alloplexbio.com/wp-json.
   contact:
     name: Alloplex Biotherapeutics
     url: https://alloplexbio.com/contact/
@@ -12,13 +12,13 @@ servers:
 - url: https://alloplexbio.com/wp-json
   description: Production content API
 tags:
-- name: search
+- name: Search
   description: Cross-content search across published posts and pages.
 paths:
   /wp/v2/search:
     get:
       tags:
-      - search
+      - Search
       operationId: search
       summary: Search across content
       description: Cross-content search returning lightweight result objects (id, title, url, type, subtype) with _links to the full object. The most efficient way to locate an Alloplex press release or corporate page by keyword.
@@ -76,6 +76,14 @@ paths:
                   $ref: '#/components/schemas/SearchResult'
 components:
   parameters:
+    Page:
+      name: page
+      in: query
+      description: Current page of the collection.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
     PerPage:
       name: per_page
       in: query
@@ -95,37 +103,7 @@ components:
         - view
         - embed
         default: view
-    Page:
-      name: page
-      in: query
-      description: Current page of the collection.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
   schemas:
-    Links:
-      type: object
-      description: HAL-style hypermedia links. Every collection and item response carries these.
-      additionalProperties:
-        type: array
-        items:
-          type: object
-          properties:
-            href:
-              type: string
-              format: uri
-            embeddable:
-              type: boolean
-            name:
-              type: string
-            templated:
-              type: boolean
-            taxonomy:
-              type: string
-            targetHints:
-              type: object
-              additionalProperties: true
     SearchResult:
       type: object
       description: A lightweight cross-content search result.
@@ -157,3 +135,25 @@ components:
       - url
       - type
       - subtype
+    Links:
+      type: object
+      description: HAL-style hypermedia links. Every collection and item response carries these.
+      additionalProperties:
+        type: array
+        items:
+          type: object
+          properties:
+            href:
+              type: string
+              format: uri
+            embeddable:
+              type: boolean
+            name:
+              type: string
+            templated:
+              type: boolean
+            taxonomy:
+              type: string
+            targetHints:
+              type: object
+              additionalProperties: true

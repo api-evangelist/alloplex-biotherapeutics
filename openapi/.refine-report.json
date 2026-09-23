@@ -1,13 +1,7 @@
 {
   "provider": "alloplex-biotherapeutics",
   "sources": [
-    "alloplex-biotherapeutics-discovery-api-openapi.yml",
-    "alloplex-biotherapeutics-media-api-openapi.yml",
-    "alloplex-biotherapeutics-oembed-api-openapi.yml",
-    "alloplex-biotherapeutics-pages-api-openapi.yml",
-    "alloplex-biotherapeutics-posts-api-openapi.yml",
-    "alloplex-biotherapeutics-search-api-openapi.yml",
-    "alloplex-biotherapeutics-taxonomy-api-openapi.yml"
+    "_original/alloplex-biotherapeutics-content-openapi.yml"
   ],
   "outputs": [
     "alloplex-biotherapeutics-discovery-api-openapi.yml",
@@ -18,18 +12,24 @@
     "alloplex-biotherapeutics-search-api-openapi.yml",
     "alloplex-biotherapeutics-taxonomy-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
-    "alloplex-biotherapeutics-discovery-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "alloplex-biotherapeutics-media-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "alloplex-biotherapeutics-oembed-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "alloplex-biotherapeutics-pages-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "alloplex-biotherapeutics-posts-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "alloplex-biotherapeutics-search-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "alloplex-biotherapeutics-taxonomy-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "apis.yml register: already-registered"
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "alloplex-biotherapeutics-content-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: alloplex-biotherapeutics-o-embed-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 7 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "alloplex-biotherapeutics-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alloplex-biotherapeutics-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alloplex-biotherapeutics-o-embed-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alloplex-biotherapeutics-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alloplex-biotherapeutics-posts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alloplex-biotherapeutics-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alloplex-biotherapeutics-taxonomy-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

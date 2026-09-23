@@ -3,7 +3,7 @@ info:
   title: Alloplex Biotherapeutics Content Pages API
   version: wp/v2
   summary: Anonymously readable WordPress REST content API behind alloplexbio.com.
-  description: The read-only content surface Alloplex Biotherapeutics exposes at https://alloplexbio.com/wp-json. Alloplex Biotherapeutics is a clinical-stage cellular immunotherapy company developing SUPLEXA, a non-engineered autologous multi-cellular therapy produced by its ENLIST cell-retraining platform; it runs no developer program and markets no product API. This document is an API Evangelist derivation of the WordPress `wp/v2` and `oembed/1.0` route index the site publishes at /wp-json/, restricted to the operations that were verified to return data anonymously on 2026-08-06. Write operations, `/wp/v2/users`, `/wp/v2/settings`, `/wp/v2/menus`, `/wp/v2/menu-items`, `/wp/v2/templates`, `/wp/v2/block-types`, `/wp/v2/font-families`, `/wp/v2/plugins`, `/wp/v2/themes`, `/wp/v2/widgets`, `/wp/v2/sidebars`, revisions, autosaves, the `mcp` namespace, the `wp-abilities/v1` namespace, the `wordfence/v1` namespace, the `rankmath/v1` namespace, the `post-duplicator/v1` namespace, the `wpe_sign_on_plugin/v1` namespace, the `wpe/cache-plugin/v1` namespace, the `wp-site-health/v1` namespace and `wp-block-editor/v1` all require authentication and are deliberately excluded — see x-api-evangelist-provenance.
+  description: The read-only content surface Alloplex Biotherapeutics exposes at https://alloplexbio.com/wp-json.
   contact:
     name: Alloplex Biotherapeutics
     url: https://alloplexbio.com/contact/
@@ -12,13 +12,13 @@ servers:
 - url: https://alloplexbio.com/wp-json
   description: Production content API
 tags:
-- name: pages
+- name: Pages
   description: Corporate pages (19 published at harvest time) — About, Investors, Scientists, Information for Patients, Media and Press, Media Kit, FAQ, Releases and Updates, Terms of use, Privacy Policy, Contact, and the shareholder-portal pages.
 paths:
   /wp/v2/pages:
     get:
       tags:
-      - pages
+      - Pages
       operationId: listPages
       summary: List pages
       description: Lists published pages — 19 at harvest time. All are top-level (parent 0) on this deployment. Note that the FAQ page returns an empty content.rendered because its body is authored in page-builder post meta that WordPress does not project into REST.
@@ -110,7 +110,7 @@ paths:
   /wp/v2/pages/{id}:
     get:
       tags:
-      - pages
+      - Pages
       operationId: getPage
       summary: Get a page
       description: Retrieves a single published page by numeric id.
@@ -136,41 +136,166 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  schemas:
-    Links:
-      type: object
-      description: HAL-style hypermedia links. Every collection and item response carries these.
-      additionalProperties:
+  parameters:
+    Page:
+      name: page
+      in: query
+      description: Current page of the collection.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Order:
+      name: order
+      in: query
+      description: Order sort attribute ascending or descending.
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        default: desc
+    PerPage:
+      name: per_page
+      in: query
+      description: Maximum number of items to be returned in result set.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+    Password:
+      name: password
+      in: query
+      description: The password for the post if it is password protected.
+      schema:
+        type: string
+    ModifiedBefore:
+      name: modified_before
+      in: query
+      description: Limit response to posts modified before a given ISO8601 compliant date.
+      schema:
+        type: string
+        format: date-time
+    Before:
+      name: before
+      in: query
+      description: Limit response to posts published before a given ISO8601 compliant date.
+      schema:
+        type: string
+        format: date-time
+    Slug:
+      name: slug
+      in: query
+      description: Limit result set to items with one or more specific slugs.
+      schema:
         type: array
         items:
+          type: string
+    Fields:
+      name: _fields
+      in: query
+      description: Limit the response to specific top-level fields. A WordPress-wide sparse-fieldset control — the single most effective way to reduce payload size on this API.
+      schema:
+        type: array
+        items:
+          type: string
+        examples:
+        - - id
+          - slug
+          - title
+          - link
+    Include:
+      name: include
+      in: query
+      description: Limit result set to specific ids.
+      schema:
+        type: array
+        items:
+          type: integer
+    Offset:
+      name: offset
+      in: query
+      description: Offset the result set by a specific number of items.
+      schema:
+        type: integer
+    Search:
+      name: search
+      in: query
+      description: Limit results to those matching a string.
+      schema:
+        type: string
+    After:
+      name: after
+      in: query
+      description: Limit response to posts published after a given ISO8601 compliant date.
+      schema:
+        type: string
+        format: date-time
+    ModifiedAfter:
+      name: modified_after
+      in: query
+      description: Limit response to posts modified after a given ISO8601 compliant date.
+      schema:
+        type: string
+        format: date-time
+    Context:
+      name: context
+      in: query
+      description: Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only.
+      schema:
+        type: string
+        enum:
+        - view
+        - embed
+        default: view
+    Exclude:
+      name: exclude
+      in: query
+      description: Ensure result set excludes specific ids.
+      schema:
+        type: array
+        items:
+          type: integer
+  responses:
+    BadRequest:
+      description: Invalid parameter
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      description: The WordPress REST error envelope. This is NOT RFC 9457 problem+json — it is a bespoke object served as application/json, with the HTTP status duplicated inside `data.status`.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+          examples:
+          - rest_post_invalid_id
+          - rest_forbidden
+        message:
+          type: string
+          description: A human-readable error message.
+        data:
           type: object
           properties:
-            href:
-              type: string
-              format: uri
-            embeddable:
-              type: boolean
-            name:
-              type: string
-            templated:
-              type: boolean
-            taxonomy:
-              type: string
-            targetHints:
-              type: object
-              additionalProperties: true
-    RenderedText:
-      type: object
-      description: A rendered-HTML text field.
-      properties:
-        rendered:
-          type: string
-          description: HTML for the field, transformed for display.
-        protected:
-          type: boolean
-          description: Whether the field is protected with a password.
+            status:
+              type: integer
+              description: The HTTP status code, repeated inside the body.
+              examples:
+              - 404
+          additionalProperties: true
       required:
-      - rendered
+      - code
+      - message
     Page:
       type: object
       description: A published corporate page.
@@ -262,162 +387,37 @@ components:
       - type
       - link
       - title
-    Error:
+    Links:
       type: object
-      description: The WordPress REST error envelope. This is NOT RFC 9457 problem+json — it is a bespoke object served as application/json, with the HTTP status duplicated inside `data.status`.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-          examples:
-          - rest_post_invalid_id
-          - rest_forbidden
-        message:
-          type: string
-          description: A human-readable error message.
-        data:
+      description: HAL-style hypermedia links. Every collection and item response carries these.
+      additionalProperties:
+        type: array
+        items:
           type: object
           properties:
-            status:
-              type: integer
-              description: The HTTP status code, repeated inside the body.
-              examples:
-              - 404
-          additionalProperties: true
+            href:
+              type: string
+              format: uri
+            embeddable:
+              type: boolean
+            name:
+              type: string
+            templated:
+              type: boolean
+            taxonomy:
+              type: string
+            targetHints:
+              type: object
+              additionalProperties: true
+    RenderedText:
+      type: object
+      description: A rendered-HTML text field.
+      properties:
+        rendered:
+          type: string
+          description: HTML for the field, transformed for display.
+        protected:
+          type: boolean
+          description: Whether the field is protected with a password.
       required:
-      - code
-      - message
-  parameters:
-    Search:
-      name: search
-      in: query
-      description: Limit results to those matching a string.
-      schema:
-        type: string
-    Password:
-      name: password
-      in: query
-      description: The password for the post if it is password protected.
-      schema:
-        type: string
-    ModifiedBefore:
-      name: modified_before
-      in: query
-      description: Limit response to posts modified before a given ISO8601 compliant date.
-      schema:
-        type: string
-        format: date-time
-    Fields:
-      name: _fields
-      in: query
-      description: Limit the response to specific top-level fields. A WordPress-wide sparse-fieldset control — the single most effective way to reduce payload size on this API.
-      schema:
-        type: array
-        items:
-          type: string
-        examples:
-        - - id
-          - slug
-          - title
-          - link
-    After:
-      name: after
-      in: query
-      description: Limit response to posts published after a given ISO8601 compliant date.
-      schema:
-        type: string
-        format: date-time
-    Offset:
-      name: offset
-      in: query
-      description: Offset the result set by a specific number of items.
-      schema:
-        type: integer
-    ModifiedAfter:
-      name: modified_after
-      in: query
-      description: Limit response to posts modified after a given ISO8601 compliant date.
-      schema:
-        type: string
-        format: date-time
-    Page:
-      name: page
-      in: query
-      description: Current page of the collection.
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    Before:
-      name: before
-      in: query
-      description: Limit response to posts published before a given ISO8601 compliant date.
-      schema:
-        type: string
-        format: date-time
-    PerPage:
-      name: per_page
-      in: query
-      description: Maximum number of items to be returned in result set.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 10
-    Context:
-      name: context
-      in: query
-      description: Scope under which the request is made; determines fields present in response. Anonymous callers may use `view` and `embed` only.
-      schema:
-        type: string
-        enum:
-        - view
-        - embed
-        default: view
-    Exclude:
-      name: exclude
-      in: query
-      description: Ensure result set excludes specific ids.
-      schema:
-        type: array
-        items:
-          type: integer
-    Order:
-      name: order
-      in: query
-      description: Order sort attribute ascending or descending.
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        default: desc
-    Slug:
-      name: slug
-      in: query
-      description: Limit result set to items with one or more specific slugs.
-      schema:
-        type: array
-        items:
-          type: string
-    Include:
-      name: include
-      in: query
-      description: Limit result set to specific ids.
-      schema:
-        type: array
-        items:
-          type: integer
-  responses:
-    BadRequest:
-      description: Invalid parameter
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+      - rendered

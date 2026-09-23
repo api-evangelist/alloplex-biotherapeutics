@@ -3,7 +3,7 @@ info:
   title: Alloplex Biotherapeutics Content Discovery API
   version: wp/v2
   summary: Anonymously readable WordPress REST content API behind alloplexbio.com.
-  description: The read-only content surface Alloplex Biotherapeutics exposes at https://alloplexbio.com/wp-json. Alloplex Biotherapeutics is a clinical-stage cellular immunotherapy company developing SUPLEXA, a non-engineered autologous multi-cellular therapy produced by its ENLIST cell-retraining platform; it runs no developer program and markets no product API. This document is an API Evangelist derivation of the WordPress `wp/v2` and `oembed/1.0` route index the site publishes at /wp-json/, restricted to the operations that were verified to return data anonymously on 2026-08-06. Write operations, `/wp/v2/users`, `/wp/v2/settings`, `/wp/v2/menus`, `/wp/v2/menu-items`, `/wp/v2/templates`, `/wp/v2/block-types`, `/wp/v2/font-families`, `/wp/v2/plugins`, `/wp/v2/themes`, `/wp/v2/widgets`, `/wp/v2/sidebars`, revisions, autosaves, the `mcp` namespace, the `wp-abilities/v1` namespace, the `wordfence/v1` namespace, the `rankmath/v1` namespace, the `post-duplicator/v1` namespace, the `wpe_sign_on_plugin/v1` namespace, the `wpe/cache-plugin/v1` namespace, the `wp-site-health/v1` namespace and `wp-block-editor/v1` all require authentication and are deliberately excluded — see x-api-evangelist-provenance.
+  description: The read-only content surface Alloplex Biotherapeutics exposes at https://alloplexbio.com/wp-json.
   contact:
     name: Alloplex Biotherapeutics
     url: https://alloplexbio.com/contact/
@@ -12,13 +12,13 @@ servers:
 - url: https://alloplexbio.com/wp-json
   description: Production content API
 tags:
-- name: discovery
+- name: Discovery
   description: Route, type, taxonomy and status discovery documents.
 paths:
   /:
     get:
       tags:
-      - discovery
+      - Discovery
       operationId: getApiIndex
       summary: Get the REST API index
       description: Returns the site index — name, description, URL, home, timezone, the registered namespaces, the authentication methods offered, and the full route table (219 routes on this deployment).
@@ -41,7 +41,7 @@ paths:
   /wp/v2:
     get:
       tags:
-      - discovery
+      - Discovery
       operationId: getCoreNamespaceIndex
       summary: Get the wp/v2 namespace index
       description: Returns the route table for the WordPress core `wp/v2` namespace only.
@@ -57,7 +57,7 @@ paths:
   /wp/v2/types:
     get:
       tags:
-      - discovery
+      - Discovery
       operationId: listTypes
       summary: List post types
       description: Lists the registered post types visible to the REST API — 12 on this deployment. Note that the four custom post types the site's sitemaps expose (publication, team_member, conference, resource) are NOT REST-registered and do not appear here.
@@ -75,7 +75,7 @@ paths:
   /wp/v2/types/{type}:
     get:
       tags:
-      - discovery
+      - Discovery
       operationId: getType
       summary: Get a post type
       description: Retrieves a single registered post type by slug.
@@ -101,7 +101,7 @@ paths:
   /wp/v2/taxonomies:
     get:
       tags:
-      - discovery
+      - Discovery
       operationId: listTaxonomies
       summary: List taxonomies
       description: Lists the registered taxonomies — category, post_tag, nav_menu and wp_pattern_category on this deployment.
@@ -124,7 +124,7 @@ paths:
   /wp/v2/taxonomies/{taxonomy}:
     get:
       tags:
-      - discovery
+      - Discovery
       operationId: getTaxonomy
       summary: Get a taxonomy
       description: Retrieves a single registered taxonomy by slug.
@@ -150,7 +150,7 @@ paths:
   /wp/v2/statuses:
     get:
       tags:
-      - discovery
+      - Discovery
       operationId: listStatuses
       summary: List post statuses
       description: Lists the post statuses visible to the caller. Anonymously this returns `publish` and `acf-disabled` on this deployment.
@@ -168,7 +168,7 @@ paths:
   /wp/v2/statuses/{status}:
     get:
       tags:
-      - discovery
+      - Discovery
       operationId: getStatus
       summary: Get a post status
       description: Retrieves a single post status by slug.
@@ -193,6 +193,29 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    PostStatus:
+      type: object
+      description: A registered post status.
+      properties:
+        name:
+          type: string
+          examples:
+          - Published
+        slug:
+          type: string
+          examples:
+          - publish
+        public:
+          type: boolean
+        queryable:
+          type: boolean
+        date_floating:
+          type: boolean
+        _links:
+          $ref: '#/components/schemas/Links'
+      required:
+      - name
+      - slug
     ApiIndex:
       type: object
       description: The REST API discovery index.
@@ -273,6 +296,31 @@ components:
       - name
       - slug
       - rest_base
+    Error:
+      type: object
+      description: The WordPress REST error envelope. This is NOT RFC 9457 problem+json — it is a bespoke object served as application/json, with the HTTP status duplicated inside `data.status`.
+      properties:
+        code:
+          type: string
+          description: A machine-readable error code.
+          examples:
+          - rest_post_invalid_id
+          - rest_forbidden
+        message:
+          type: string
+          description: A human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code, repeated inside the body.
+              examples:
+              - 404
+          additionalProperties: true
+      required:
+      - code
+      - message
     Links:
       type: object
       description: HAL-style hypermedia links. Every collection and item response carries these.
@@ -347,54 +395,13 @@ components:
       - name
       - slug
       - rest_base
-    Error:
-      type: object
-      description: The WordPress REST error envelope. This is NOT RFC 9457 problem+json — it is a bespoke object served as application/json, with the HTTP status duplicated inside `data.status`.
-      properties:
-        code:
-          type: string
-          description: A machine-readable error code.
-          examples:
-          - rest_post_invalid_id
-          - rest_forbidden
-        message:
-          type: string
-          description: A human-readable error message.
-        data:
-          type: object
-          properties:
-            status:
-              type: integer
-              description: The HTTP status code, repeated inside the body.
-              examples:
-              - 404
-          additionalProperties: true
-      required:
-      - code
-      - message
-    PostStatus:
-      type: object
-      description: A registered post status.
-      properties:
-        name:
-          type: string
-          examples:
-          - Published
-        slug:
-          type: string
-          examples:
-          - publish
-        public:
-          type: boolean
-        queryable:
-          type: boolean
-        date_floating:
-          type: boolean
-        _links:
-          $ref: '#/components/schemas/Links'
-      required:
-      - name
-      - slug
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     Context:
       name: context
@@ -406,10 +413,3 @@ components:
         - view
         - embed
         default: view
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
