@@ -64,5 +64,120 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Alloplex Biotherapeutics is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/alloplex-biotherapeutics_stock/
+Alloplex Biotherapeutics, Inc. is a privately held clinical-stage cellular immunotherapy company founded in 2016 and headquartered in Woburn, Massachusetts, with a wholly owned subsidiary, Alloplex Australia Pty Ltd, in Adelaide, South Australia. It develops non-engineered, autologous multi-cellular therapies intended to retrain a patient's own immune system against solid tumors and autoimmune disease. Its ENLIST platform uses an irradiated, engineered melanoma cell line expressing multiple immunomodulatory factors to activate, differentiate and expand a patient's peripheral blood mononuclear cells; the resulting product, SUPLEXA, is manufactured by a defined, GMP-compatible process that uses no genetic engineering and no feeder cells and yields a full course of treatment from a small blood draw in roughly one month. The first-in-human Phase 1 SUPLEXA-101 trial, conducted in Australia in 35 patients with metastatic solid tumors who had exhausted standard options, met its endpoints, and the FDA granted SUPLEXA Fast Track designation for MSI-H colorectal cancer. Alloplex Biotherapeutics runs no developer program and publishes no product API, developer portal, SDK or API documentation; the only machine-readable surface reachable without credentials is the WordPress REST content API behind alloplexbio.com, catalogued here.
+
+**Areas:** Company · Biotechnology · Cell Therapy · Immunotherapy · Oncology · Cancer · Clinical Trials · Life Sciences · Drug Development · autoimmunity · content-api
+
+## Alloplex Biotherapeutics on APIs.io
+
+Everything profiled for Alloplex Biotherapeutics is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/alloplex-biotherapeutics/](https://apis.io/providers/alloplex-biotherapeutics/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Alloplex Biotherapeutics Website (WordPress REST)](https://apis.io/apis/alloplex-biotherapeutics/alloplexbio-com-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the Alloplex Biotherapeutics website at alloplexbio.com: the route index of the site's content management system,…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [alloplex-biotherapeutics](https://apis.io/servers/alloplex-biotherapeutics/alloplex-biotherapeutics/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Alloplex Biotherapeutics Organization Context](https://apis.io/jsonld/alloplex-biotherapeutics/alloplex-biotherapeutics-organization/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Moved to /providers/alloplex-biotherapeutics/](https://apis.io/collections/alloplex-biotherapeutics/open-alloplex-biotherapeutics-discovery-api/)
+- [Moved to /providers/alloplex-biotherapeutics/](https://apis.io/collections/alloplex-biotherapeutics/open-alloplex-biotherapeutics-media-api/)
+- [Moved to /providers/alloplex-biotherapeutics/](https://apis.io/collections/alloplex-biotherapeutics/open-alloplex-biotherapeutics-oembed-api/)
+- [Moved to /providers/alloplex-biotherapeutics/](https://apis.io/collections/alloplex-biotherapeutics/open-alloplex-biotherapeutics-pages-api/)
+- [Moved to /providers/alloplex-biotherapeutics/](https://apis.io/collections/alloplex-biotherapeutics/open-alloplex-biotherapeutics-posts-api/)
+- [Moved to /providers/alloplex-biotherapeutics/](https://apis.io/collections/alloplex-biotherapeutics/open-alloplex-biotherapeutics-search-api/)
+- [Moved to /providers/alloplex-biotherapeutics/](https://apis.io/collections/alloplex-biotherapeutics/open-alloplex-biotherapeutics-taxonomy-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Alloplex Biotherapeutics Content Overlay](https://apis.io/overlays/alloplex-biotherapeutics/alloplex-biotherapeutics-content-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Alloplex Biotherapeutics Authentication](https://apis.io/security/alloplex-biotherapeutics/alloplex-biotherapeutics-authentication/)
+- [Alloplex Biotherapeutics Domain Security](https://apis.io/security/alloplex-biotherapeutics/alloplex-biotherapeutics-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://alloplexbio.com/)
+- [Support](https://alloplexbio.com/contact/)
+- [Blog](https://alloplexbio.com/releases-and-updates/)
+- [Terms of service](https://alloplexbio.com/terms/)
+- [Privacy policy](https://alloplexbio.com/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 21.0** — emerging · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 60.8 |
+| Contract quality | 6.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 27.6 |
+
+**Agent readiness 6.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 19.5** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/alloplex-biotherapeutics/](https://apis.io/providers/alloplex-biotherapeutics/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Alloplex Biotherapeutics: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/alloplex-biotherapeutics/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
